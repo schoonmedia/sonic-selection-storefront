@@ -53,11 +53,18 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
 
 Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
 
+- **Design-Feinschliff (Header + Navigation):** Header läuft jetzt auf dem
+  Sonic-Selection-Farbschema (Jet Black, Slate-Trennlinie, Lime als aktive/
+  Hover-Farbe) statt weißem Skeleton-Standard — Logo, Menü, Account-Link,
+  Favoriten-Herz, Suche und Warenkorb-Badge sind umgestellt. Cart-/Search-
+  Aside (das ausklappende weiße Seitenpanel) ist bewusst noch unangetastet,
+  folgt im nächsten Design-Schritt.
+
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Header/Produktkarten/Collections sind noch Skeleton-Standard, nicht das
-  volle Sonic-Selection-Design aus dem Mock-up (nur der Player selbst hat
-  die eigene Designsprache).
+- Produktkarten/Collections/Startseite/Account-Seiten sind noch Skeleton-
+  Standard, nicht das volle Sonic-Selection-Design aus dem Mock-up (Header
+  ist bereits umgestellt, siehe oben).
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
@@ -101,9 +108,9 @@ Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
 regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
 erledigt. Offen aus dem ursprünglichen Bauplan:
 
-1. **Design-Feinschliff:** Header/Produktkarten/Collections auf die
-   Sonic-Selection-Designsprache aus dem Mock-up bringen (aktuell noch
-   Skeleton-Standard-Layout, inkl. der neuen Account-/Präferenzen-Seiten).
+1. **Design-Feinschliff:** Header ist erledigt (siehe oben). Als Nächstes:
+   Produktkarten, Collections, Startseite und Account-/Präferenzen-Seiten
+   auf die Sonic-Selection-Designsprache aus dem Mock-up bringen.
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).

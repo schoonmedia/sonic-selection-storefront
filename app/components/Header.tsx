@@ -27,7 +27,13 @@ export function Header({
   const {shop, menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+      <NavLink
+        className="header-logo"
+        prefetch="intent"
+        to="/"
+        style={activeLinkStyle}
+        end
+      >
         <strong>{shop.name}</strong>
       </NavLink>
       <HeaderMenu
@@ -103,7 +109,12 @@ function HeaderCtas({
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+      <NavLink
+        className="header-account-link"
+        prefetch="intent"
+        to="/account"
+        style={activeLinkStyle}
+      >
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
             {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
@@ -146,7 +157,7 @@ function FavoritesLink() {
 function SearchToggle() {
   const {open} = useAside();
   return (
-    <button className="reset" onClick={() => open('search')}>
+    <button className="header-search-toggle reset" onClick={() => open('search')}>
       Search
     </button>
   );
@@ -158,6 +169,7 @@ function CartBadge({count}: {count: number}) {
 
   return (
     <a
+      className="header-cart-toggle"
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -170,7 +182,10 @@ function CartBadge({count}: {count: number}) {
         } as CartViewPayload);
       }}
     >
-      Cart <span aria-label={`(items: ${count})`}>{count}</span>
+      Cart{' '}
+      <span className="header-cart-badge" aria-label={`(items: ${count})`}>
+        {count}
+      </span>
     </a>
   );
 }
@@ -240,8 +255,11 @@ function activeLinkStyle({
   isActive: boolean;
   isPending: boolean;
 }) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
-  };
+  if (isPending) {
+    return {color: 'var(--ss-slate)'};
+  }
+  if (isActive) {
+    return {fontWeight: 700, color: 'var(--ss-lime)'};
+  }
+  return {};
 }

@@ -227,19 +227,48 @@ button.reset:hover:not(:has(> *)) {
 */
 .header {
   align-items: center;
-  background: #fff;
+  background: var(--ss-black);
+  border-bottom: 1px solid var(--ss-slate);
+  color: var(--ss-light);
   display: flex;
   height: var(--header-height);
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10;
+}
+
+.header a {
+  color: var(--ss-light);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.header a:hover {
+  color: var(--ss-lime);
+}
+
+.header-logo {
+  color: var(--ss-light);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  margin-right: 1rem;
+}
+
+.header-logo:hover {
+  color: var(--ss-gold);
 }
 
 .header-menu-mobile-toggle {
+  color: var(--ss-light);
+
   @media (min-width: 48em) {
     display: none;
   }
+}
+
+.header-menu-mobile-toggle h3 {
+  margin: 0;
 }
 
 .header-menu-mobile {
@@ -249,28 +278,71 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .header-menu-desktop {
+  align-items: center;
   display: none;
-  grid-gap: 1rem;
+  grid-gap: 1.75rem;
   @media (min-width: 45em) {
     display: flex;
-    grid-gap: 1rem;
+    grid-gap: 1.75rem;
     margin-left: 3rem;
   }
 }
 
 .header-menu-item {
   cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .header-ctas {
   align-items: center;
   display: flex;
-  grid-gap: 1rem;
+  grid-gap: 1.25rem;
   margin-left: auto;
 }
 
 .header-ctas > * {
   min-width: fit-content;
+}
+
+.header-ctas .reset {
+  color: var(--ss-light);
+}
+
+.header-ctas .reset:hover:not(:has(> *)) {
+  color: var(--ss-lime);
+  text-decoration: none;
+}
+
+.header-account-link,
+.header-search-toggle {
+  font-size: 0.9rem;
+}
+
+.header-favorites-link {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.95rem;
+}
+
+.header-cart-toggle {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.9rem;
+  gap: 0.35rem;
+}
+
+.header-cart-badge {
+  background: var(--ss-lime);
+  border-radius: 999px;
+  color: var(--ss-black);
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  justify-content: center;
+  min-width: 1.35rem;
+  padding: 0.05rem 0.4rem;
 }
 
 /*
