@@ -1,0 +1,105 @@
+name: CI/CD — Sonic Selection Storefront
+
+# Pull requests: lint, typecheck, build, and a preview deploy to Oxygen so
+# reviewers get a live URL. Pushes to main: same checks, then production
+# deploy. Oxygen deployment token must be stored as the GitHub secret
+# OXYGEN_DEPLOYMENT_TOKEN (Shopify Admin > Hydrogen > Storefront settings
+# > Environments > Deployment token). Never put the token in this file.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Lint, typecheck, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+  deploy-preview:
+    name: Deploy preview (Oxygen)
+    needs: checks
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Oxygen (preview environment)
+        id: deploy
+        run: |
+          npx shopify hydrogen deploy \
+            --token="${{ secrets.OXYGEN_DEPLOYMENT_TOKEN }}" \
+            --preview \
+            2>&1 | tee deploy-output.txt
+          echo "url=$(grep -oE 'https://[a-zA-Z0-9.-]*\.myshopify\.dev\S*|https://[a-zA-Z0-9.-]*\.oxygen\S*' deploy-output.txt | tail -1)" >> "$GITHUB_OUTPUT"
+        env:
+          SHOPIFY_FLAG_ENVIRONMENT: preview
+
+      - name: Comment preview URL on PR
+        if: steps.deploy.outputs.url != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Preview deployed: ${{ steps.deploy.outputs.url }}`
+            });
+
+  deploy-production:
+    name: Deploy production (Oxygen)
+    needs: checks
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Oxygen (production)
+        run: |
+          npx shopify hydrogen deploy \
+            --token="${{ secrets.OXYGEN_DEPLOYMENT_TOKEN }}"
