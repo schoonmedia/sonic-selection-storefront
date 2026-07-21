@@ -243,6 +243,65 @@ body:has(.ss-global-player) {
   color: var(--ss-black);
 }
 
+/* --- Onboarding preferences quiz (/account/preferences) ------------------- */
+.account-preferences {
+  max-width: 40em;
+}
+.preferences-genres {
+  border: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+.preferences-genres legend {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.preferences-genres__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.preferences-genre-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--ss-slate);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.preferences-genre-chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.preferences-genre-chip:has(input:checked) {
+  border-color: var(--ss-lime);
+  background: var(--ss-lime);
+  color: var(--ss-black);
+  font-weight: 600;
+}
+.preferences-genre-chip:has(input:focus-visible) {
+  outline: 2px solid var(--ss-gold);
+  outline-offset: 2px;
+}
+.preferences-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.preferences-skip {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
 /* --- Recently played (homepage section) ---------------------------------- */
 .recently-played {
   padding: 1.5rem;

@@ -1,5 +1,6 @@
 import {
   data as remixData,
+  redirect,
   Form,
   NavLink,
   Outlet,
@@ -12,7 +13,7 @@ export function shouldRevalidate() {
   return true;
 }
 
-export async function loader({context}: Route.LoaderArgs) {
+export async function loader({context, request}: Route.LoaderArgs) {
   const {customerAccount} = context;
   const {data, errors} = await customerAccount.query(CUSTOMER_DETAILS_QUERY, {
     variables: {
@@ -22,6 +23,16 @@ export async function loader({context}: Route.LoaderArgs) {
 
   if (errors?.length || !data?.customer) {
     throw new Error('Customer not found');
+  }
+
+  // First-login onboarding gate: send anyone without saved music
+  // preferences to the quiz once. It writes a record even when skipped
+  // (see account.preferences.tsx), so this only ever fires until the
+  // customer has been through it once.
+  const pathname = new URL(request.url).pathname;
+  const hasPreferences = Boolean(data.customer.musicPreferences?.value);
+  if (!hasPreferences && pathname !== '/account/preferences') {
+    throw redirect('/account/preferences');
   }
 
   return remixData(
@@ -81,6 +92,10 @@ function AccountMenu() {
       &nbsp;|&nbsp;
       <NavLink to="/account/addresses" style={isActiveStyle}>
         &nbsp; Addresses &nbsp;
+      </NavLink>
+      &nbsp;|&nbsp;
+      <NavLink to="/account/preferences" style={isActiveStyle}>
+        &nbsp; Präferenzen &nbsp;
       </NavLink>
       &nbsp;|&nbsp;
       <Logout />

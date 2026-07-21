@@ -39,6 +39,14 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
   Top-Treffer. Zeigt aktuell nichts an, weil nur ein Testprodukt existiert —
   erledigt sich von selbst, sobald mehr Sound Packs mit Genre/BPM-Angaben
   drin sind.
+- **Kundenkonto mit Onboarding-Quiz**: Login läuft über Shopifys eigenes
+  Customer-Account-System (sicher, wir fassen nie Passwörter an). Nach dem
+  ersten Login landet man auf `/account/preferences` — Genres per
+  Chip-Auswahl, Lieblingskünstler als Freitext, oder überspringen. Antworten
+  landen in einem Customer-Metafield (`custom.music_preferences`, JSON) und
+  speisen eine "Für dich empfohlen"-Sektion auf der Startseite (gleiche
+  Scoring-Logik wie die Produkt-Empfehlungen, nur nach Genre statt nach
+  einem einzelnen Produkt gesucht).
 - **CI/CD** (`.github/workflows/ci.yml`): Lint + Typecheck + Build auf jedem
   PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
   Push auf `main`. Läuft grün, verbunden mit dem echten Store.
@@ -89,13 +97,13 @@ nötig) und schreibt die echten Store-Variablen in `.env`.
 ## Nächste Claude-Prompts (aus dem Bauplan)
 
 Schritte 2–5 (Player-Prototyp, Shopify-Audiodaten, Produktkarten,
-Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört" und eine
-regelbasierte Empfehlungs-Engine sind erledigt. Offen aus dem
-ursprünglichen Bauplan:
+Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
+regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
+erledigt. Offen aus dem ursprünglichen Bauplan:
 
 1. **Design-Feinschliff:** Header/Produktkarten/Collections auf die
    Sonic-Selection-Designsprache aus dem Mock-up bringen (aktuell noch
-   Skeleton-Standard-Layout).
+   Skeleton-Standard-Layout, inkl. der neuen Account-/Präferenzen-Seiten).
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
@@ -104,6 +112,8 @@ ursprünglichen Bauplan:
 4. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
    echte Produkte vorhanden sind — Empfehlungen brauchen mindestens 2
    Produkte mit Genre/BPM, um überhaupt etwas anzuzeigen.
+5. **Content-Pipeline:** echte Sound Packs mit Audiodateien einpflegen —
+   nächster großer Block, siehe Vision unten.
 
 ## Ordnerstruktur (Player-relevant)
 
@@ -112,15 +122,20 @@ app/
 ├── components/audio/   GlobalPlayer, MiniPlayer, MobilePlayer, ExpandedPlayer,
 │                       PlayerControls, ProgressBar, VolumeControl, Waveform,
 │                       QueueDrawer, ProductPlayButton, FavoriteButton,
-│                       RecentlyPlayedSection
+│                       RecentlyPlayedSection, RecommendedTracksSection,
+│                       ForYouSection
 ├── stores/              playerStore, favoritesStore, historyStore
 ├── hooks/              useAudioEngine, useMediaSession, usePlayerPersistence,
 │                       useFavoritesPersistence, useHistoryPersistence
 ├── services/           audioAnalytics, playerStorage, favoritesStorage,
 │                       historyStorage
 ├── lib/                fragments.ts (AudioTracksMetafield-Fragment),
-│                       audioTracks.ts (mapAudioTracks, toAudioProduct)
-├── routes/api.audio-products.tsx   Server-Route für Persistenz-Rehydration
+│                       audioTracks.ts (mapAudioTracks, toAudioProduct),
+│                       musicGenres.ts (Onboarding-Quiz-Genreliste)
+├── routes/              api.audio-products.tsx, api.recommendations.tsx,
+│                       account.preferences.tsx (Onboarding-Quiz)
+├── graphql/customer-account/   CustomerPreferencesMutation, CustomerIdQuery,
+│                       CustomerMusicPreferencesQuery
 └── types/audio.ts
 docs/shopify-audio-track-metaobject.md
 .github/workflows/ci.yml

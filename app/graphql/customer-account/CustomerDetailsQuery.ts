@@ -4,6 +4,9 @@ export const CUSTOMER_FRAGMENT = `#graphql
     id
     firstName
     lastName
+    musicPreferences: metafield(namespace: "custom", key: "music_preferences") {
+      value
+    }
     defaultAddress {
       ...Address
     }

@@ -10,6 +10,8 @@ import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
 import {RecentlyPlayedSection} from '~/components/audio/RecentlyPlayedSection';
+import {ForYouSection} from '~/components/audio/ForYouSection';
+import {CUSTOMER_MUSIC_PREFERENCES_QUERY} from '~/graphql/customer-account/CustomerMusicPreferencesQuery';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'Hydrogen | Home'}];
@@ -55,9 +57,37 @@ function loadDeferredData({context}: Route.LoaderArgs) {
       return null;
     });
 
+  const preferredGenres = loadPreferredGenres(context);
+
   return {
     recommendedProducts,
+    preferredGenres,
   };
+}
+
+/** Logged-in customers who completed the onboarding quiz get a "Für dich
+ * empfohlen" section, seeded by their saved genres. Everyone else (logged
+ * out, or logged in but skipped the quiz) sees nothing extra — this
+ * resolves to null in both cases so ForYouSection never renders. */
+async function loadPreferredGenres(
+  context: Route.LoaderArgs['context'],
+): Promise<string[] | null> {
+  try {
+    const isLoggedIn = await context.customerAccount.isLoggedIn();
+    if (!isLoggedIn) return null;
+
+    const {data} = await context.customerAccount.query(
+      CUSTOMER_MUSIC_PREFERENCES_QUERY,
+    );
+    const raw = data?.customer?.musicPreferences?.value;
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw) as {genres?: string[]};
+    return parsed.genres && parsed.genres.length > 0 ? parsed.genres : null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 export default function Homepage() {
@@ -65,6 +95,7 @@ export default function Homepage() {
   return (
     <div className="home">
       {data.isShopLinked ? null : <MockShopNotice />}
+      <ForYou genres={data.preferredGenres} />
       <RecentlyPlayedSection />
       <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
@@ -95,6 +126,20 @@ function FeaturedCollection({
       )}
       <h1>{collection.title}</h1>
     </Link>
+  );
+}
+
+function ForYou({genres}: {genres: Promise<string[] | null>}) {
+  return (
+    <Suspense fallback={null}>
+      <Await resolve={genres}>
+        {(resolvedGenres) =>
+          resolvedGenres && resolvedGenres.length > 0 ? (
+            <ForYouSection genres={resolvedGenres} />
+          ) : null
+        }
+      </Await>
+    </Suspense>
   );
 }
 
