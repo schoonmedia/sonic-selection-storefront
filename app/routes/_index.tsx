@@ -9,6 +9,7 @@ import type {
 import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
+import {RecentlyPlayedSection} from '~/components/audio/RecentlyPlayedSection';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'Hydrogen | Home'}];
@@ -64,6 +65,7 @@ export default function Homepage() {
   return (
     <div className="home">
       {data.isShopLinked ? null : <MockShopNotice />}
+      <RecentlyPlayedSection />
       <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>

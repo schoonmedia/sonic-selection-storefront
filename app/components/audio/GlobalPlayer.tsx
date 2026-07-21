@@ -3,6 +3,7 @@ import {usePlayerStore} from '~/stores/playerStore';
 import {useAudioEngine} from '~/hooks/useAudioEngine';
 import {usePlayerPersistence} from '~/hooks/usePlayerPersistence';
 import {useFavoritesPersistence} from '~/hooks/useFavoritesPersistence';
+import {useHistoryPersistence} from '~/hooks/useHistoryPersistence';
 import {useMediaSession} from '~/hooks/useMediaSession';
 import {MiniPlayer} from '~/components/audio/MiniPlayer';
 import {MobilePlayer} from '~/components/audio/MobilePlayer';
@@ -30,6 +31,7 @@ export function GlobalPlayer() {
   const {seek} = useAudioEngine();
   usePlayerPersistence();
   useFavoritesPersistence();
+  useHistoryPersistence();
   useMediaSession(seek);
 
   useEffect(() => {

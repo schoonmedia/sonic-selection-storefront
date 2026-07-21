@@ -243,6 +243,60 @@ body:has(.ss-global-player) {
   color: var(--ss-black);
 }
 
+/* --- Recently played (homepage section) ---------------------------------- */
+.recently-played {
+  padding: 1.5rem;
+}
+.recently-played h2 {
+  margin: 0 0 1rem;
+}
+.recently-played__row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+.recently-played__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+  min-width: 220px;
+  padding: 0.75rem;
+  border: 1px solid var(--ss-slate);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ss-graphite) 60%, transparent);
+}
+.recently-played__item .ss-play-button {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.recently-played__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.recently-played__title {
+  font-weight: 600;
+  color: var(--ss-light);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recently-played__title:hover {
+  color: var(--ss-lime);
+}
+.recently-played__track {
+  font-size: 0.85em;
+  color: var(--ss-gold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* --- Favorites overview page -------------------------------------------- */
 .favorites {
   padding: 2rem 1.5rem;

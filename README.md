@@ -31,6 +31,11 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
   Lautstärke/Position wiederhergestellt, sondern auch aktiver Track,
   Playlist und Queue — über `/api/audio-products` (Server-Route, holt die
   echten Shopify-Daten neu anhand der persistierten IDs).
+- **Favoriten**: Herz-Button auf Produktkarten und PDP, eigene `/favorites`-
+  Seite mit Live-Zähler im Header. Kein Kundenkonto nötig — läuft über
+  localStorage, genau wie der Player selbst.
+- **Zuletzt gehört**: Startseiten-Sektion mit den letzten Produkten/Tracks,
+  die der Besucher abgespielt hat, inkl. direktem Play-Button.
 - **CI/CD** (`.github/workflows/ci.yml`): Lint + Typecheck + Build auf jedem
   PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
   Push auf `main`. Läuft grün, verbunden mit dem echten Store.
@@ -43,8 +48,7 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   volle Sonic-Selection-Design aus dem Mock-up (nur der Player selbst hat
   die eigene Designsprache).
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
-- Favoriten, "Zuletzt gehört" / Continue-Listening, Empfehlungs-Engine —
-  noch nicht begonnen.
+- Empfehlungs-Engine — noch nicht begonnen.
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
 
@@ -83,7 +87,8 @@ nötig) und schreibt die echten Store-Variablen in `.env`.
 ## Nächste Claude-Prompts (aus dem Bauplan)
 
 Schritte 2–5 (Player-Prototyp, Shopify-Audiodaten, Produktkarten,
-Persistenz-Feinschliff) sind erledigt. Offen aus dem ursprünglichen Bauplan:
+Persistenz-Feinschliff) sowie Favoriten und "Zuletzt gehört" sind erledigt.
+Offen aus dem ursprünglichen Bauplan:
 
 1. **Design-Feinschliff:** Header/Produktkarten/Collections auf die
    Sonic-Selection-Designsprache aus dem Mock-up bringen (aktuell noch
@@ -91,13 +96,9 @@ Persistenz-Feinschliff) sind erledigt. Offen aus dem ursprünglichen Bauplan:
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
-3. **Favoriten:** Herz-Button auf Produktkarte/PDP, Speicherung (Metafield
-   auf Customer oder eigener Storage), Übersichtsseite.
-4. **Zuletzt gehört / Continue-Listening:** eigener Verlauf (mehr als nur
-   der zuletzt aktive Track), Startseiten-Sektion.
-5. **Empfehlungs-Engine:** erst regelbasiert (gleiches Genre/BPM-Bereich),
+3. **Empfehlungs-Engine:** erst regelbasiert (gleiches Genre/BPM-Bereich),
    später ggf. KI-gestützt.
-6. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
+4. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
    echte Produkte vorhanden sind.
 
 ## Ordnerstruktur (Player-relevant)
@@ -106,10 +107,13 @@ Persistenz-Feinschliff) sind erledigt. Offen aus dem ursprünglichen Bauplan:
 app/
 ├── components/audio/   GlobalPlayer, MiniPlayer, MobilePlayer, ExpandedPlayer,
 │                       PlayerControls, ProgressBar, VolumeControl, Waveform,
-│                       QueueDrawer, ProductPlayButton
-├── stores/playerStore.ts
-├── hooks/              useAudioEngine, useMediaSession, usePlayerPersistence
-├── services/           audioAnalytics, playerStorage
+│                       QueueDrawer, ProductPlayButton, FavoriteButton,
+│                       RecentlyPlayedSection
+├── stores/              playerStore, favoritesStore, historyStore
+├── hooks/              useAudioEngine, useMediaSession, usePlayerPersistence,
+│                       useFavoritesPersistence, useHistoryPersistence
+├── services/           audioAnalytics, playerStorage, favoritesStorage,
+│                       historyStorage
 ├── lib/                fragments.ts (AudioTracksMetafield-Fragment),
 │                       audioTracks.ts (mapAudioTracks, toAudioProduct)
 ├── routes/api.audio-products.tsx   Server-Route für Persistenz-Rehydration
