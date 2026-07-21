@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sonic Selection Assets Preview</title>
+<style>:root {
+  --ss-color-jet-black: #0B0B0D;
+  --ss-color-graphite: #16161A;
+  --ss-color-dark-slate: #2A2A31;
+  --ss-color-light: #F2F2F4;
+  --ss-color-electric-lime: #C6FF00;
+  --ss-color-gold: #D4AF7A;
+  --ss-color-muted: #A8A8AE;
+  --ss-color-border: #2A2A31;
+
+  --ss-font-display: "Clash Display", "Orbitron", "Space Grotesk", "Arial Black", sans-serif;
+  --ss-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --ss-radius-xs: 6px;
+  --ss-radius-sm: 10px;
+  --ss-radius-md: 16px;
+  --ss-radius-lg: 24px;
+  --ss-radius-pill: 999px;
+
+  --ss-player-height-desktop: 96px;
+  --ss-player-height-mobile: 72px;
+  --ss-header-height: 96px;
+
+  --ss-shadow-glow: 0 0 32px rgba(198, 255, 0, .18);
+  --ss-transition-fast: 160ms ease;
+  --ss-transition-base: 240ms ease;
+}
+
+body {
+  background: var(--ss-color-jet-black);
+  color: var(--ss-color-light);
+  font-family: var(--ss-font-body);
+}
+
+.ss-display {
+  font-family: var(--ss-font-display);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  line-height: .95;
+}
+
+.ss-kicker {
+  color: var(--ss-color-electric-lime);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.ss-button-primary {
+  background: var(--ss-color-electric-lime);
+  color: #0B0B0D;
+  border: 1px solid var(--ss-color-electric-lime);
+  border-radius: var(--ss-radius-xs);
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.ss-button-secondary {
+  background: transparent;
+  color: var(--ss-color-light);
+  border: 1px solid rgba(242,242,244,.24);
+  border-radius: var(--ss-radius-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ss-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  border: 1px solid rgba(242,242,244,.12);
+  border-radius: var(--ss-radius-sm);
+  overflow: hidden;
+}
+
+.ss-card:hover {
+  border-color: rgba(198,255,0,.55);
+  box-shadow: var(--ss-shadow-glow);
+}
+
+.ss-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--ss-player-height-desktop);
+  background: rgba(11,11,13,.94);
+  border-top: 1px solid rgba(242,242,244,.14);
+  backdrop-filter: blur(18px);
+  z-index: 80;
+}
+
+@media (max-width: 767px) {
+  :root { --ss-player-height-desktop: var(--ss-player-height-mobile); }
+}
+
+
+.ss-logo { display: inline-flex; align-items: center; gap: 14px; color: var(--ss-color-light); }
+.ss-logo-mark svg, .ss-logo-mark { width: 56px; height: 56px; display: block; }
+.ss-logo-type { display: flex; flex-direction: column; font-family: var(--ss-font-display); font-weight: 900; line-height: .86; letter-spacing: .06em; font-size: 24px; }
+.ss-product-card { position: relative; min-height: 260px; }
+.ss-product-card__media { position: relative; aspect-ratio: 1.4 / 1; background: #111; overflow: hidden; }
+.ss-product-card__media img { width: 100%; height: 100%; object-fit: cover; opacity: .78; }
+.ss-product-card__placeholder { width: 100%; height: 100%; background: radial-gradient(circle at 50% 40%, rgba(198,255,0,.15), transparent 45%), #101014; }
+.ss-product-card__badge { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--ss-color-electric-lime); color: #0B0B0D; border-radius: 4px; padding: 3px 7px; font-size: 11px; font-weight: 900; }
+.ss-product-card__play { position: absolute; right: 14px; bottom: 14px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(242,242,244,.5); background: rgba(11,11,13,.66); color: var(--ss-color-light); }
+.ss-product-card__content { padding: 16px; }
+.ss-product-card__content h3 { margin: 0; font-family: var(--ss-font-display); line-height: 1; text-transform: uppercase; }
+.ss-product-card__content p { margin: 8px 0 0; color: var(--ss-color-muted); }
+.ss-player__inner { height: 100%; display: grid; grid-template-columns: minmax(240px, 1fr) auto minmax(340px, 2fr); gap: 28px; align-items: center; padding: 0 28px; }
+.ss-player__now-playing { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.ss-player__now-playing img, .ss-player__cover { width: 56px; height: 56px; border-radius: 6px; background: radial-gradient(circle, rgba(198,255,0,.25), rgba(255,255,255,.04)); }
+.ss-player__now-playing strong { display: block; text-transform: uppercase; font-weight: 900; }
+.ss-player__now-playing span { display: block; color: var(--ss-color-muted); font-size: 14px; }
+.ss-player__controls { display: flex; gap: 16px; align-items: center; }
+.ss-player__controls button { color: var(--ss-color-light); background: transparent; border: 0; font-size: 20px; cursor: pointer; }
+.ss-player__main { width: 54px; height: 54px; border: 1px solid rgba(242,242,244,.45) !important; border-radius: 50%; }
+.ss-player__progress { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; color: var(--ss-color-muted); font-size: 12px; }
+.ss-player__bar { height: 22px; background: linear-gradient(90deg, rgba(198,255,0,.16), rgba(255,255,255,.12)); border-radius: 999px; overflow: hidden; }
+.ss-player__bar span { display: block; height: 100%; background: var(--ss-color-electric-lime); box-shadow: 0 0 20px rgba(198,255,0,.45); }
+@media (max-width: 767px) {
+  .ss-player__inner { grid-template-columns: 1fr auto; padding: 0 14px; gap: 12px; }
+  .ss-player__progress { display: none; }
+}
+ body{padding:40px 40px 140px} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px} .sw{height:100px;border-radius:16px;border:1px solid rgba(255,255,255,.12)} code{color:var(--ss-color-electric-lime)}</style></head>
+<body>
+  <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:60px">
+    <img src="../svg/sonic-selection-logo-horizontal-white.svg" alt="Sonic Selection" style="width:360px;max-width:70vw">
+    <span class="ss-kicker">Brand Asset Preview</span>
+  </header>
+  <main>
+    <section style="margin-bottom:48px">
+      <p class="ss-kicker">Concept</p>
+      <h1 class="ss-display" style="font-size:72px;max-width:780px;margin:.2em 0">Sounds that inspire.<br><span style="color:var(--ss-color-electric-lime)">Tools that elevate.</span></h1>
+      <p style="color:var(--ss-color-muted);font-size:20px;max-width:620px">Premium sound packs and producer tools for modern music producers.</p>
+    </section>
+    <section style="margin-bottom:48px">
+      <p class="ss-kicker">Colors</p>
+      <div class="grid"><div><div class="sw" style="background:#0B0B0D"></div><p><code>#0B0B0D</code><br>Jet Black</p></div><div><div class="sw" style="background:#16161A"></div><p><code>#16161A</code><br>Graphite</p></div><div><div class="sw" style="background:#2A2A31"></div><p><code>#2A2A31</code><br>Dark Slate</p></div><div><div class="sw" style="background:#F2F2F4"></div><p><code>#F2F2F4</code><br>Light</p></div><div><div class="sw" style="background:#C6FF00"></div><p><code>#C6FF00</code><br>Electric Lime</p></div><div><div class="sw" style="background:#D4AF7A"></div><p><code>#D4AF7A</code><br>Gold</p></div></div>
+    </section>
+  </main>
+</body></html>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#0B0B0D"/>
+  <rect y="0" width="1600" height="30" fill="#050506"/>
+  <text x="650" y="20" fill="#C6FF00" font-family="Inter, Arial" font-size="14" font-weight="800">NEW RELEASE: DARK TRAP VOL. 5 — OUT NOW</text>
+  <rect y="30" width="1600" height="86" fill="#0A0A0B" stroke="#2A2A31"/>
+  <text x="72" y="85" fill="#F2F2F4" font-family="Arial Black, Impact" font-size="28" letter-spacing="2">SONIC SELECTION</text>
+  <text x="404" y="82" fill="#F2F2F4" font-family="Inter, Arial" font-size="15">SOUND PACKS    DRUM KITS    MIDI    PRESETS    TOOLS    BUNDLES    FREE    BLOG</text>
+  <rect x="72" y="160" width="1456" height="320" rx="24" fill="#101014" stroke="#2A2A31"/>
+  <text x="116" y="230" fill="#C6FF00" font-family="Inter, Arial" font-size="14" font-weight="800" letter-spacing="3">NEXT LEVEL SOUNDS</text>
+  <text x="116" y="300" fill="#F2F2F4" font-family="Arial Black, Impact" font-size="56">SOUNDS THAT INSPIRE.</text>
+  <text x="116" y="370" fill="#C6FF00" font-family="Arial Black, Impact" font-size="56">TOOLS THAT ELEVATE.</text>
+  <text x="116" y="415" fill="#A8A8AE" font-family="Inter, Arial" font-size="20">Premium sounds, loops, presets and tools for modern producers.</text>
+  <rect x="116" y="438" width="170" height="48" rx="6" fill="#C6FF00"/>
+  <text x="140" y="469" fill="#0B0B0D" font-family="Inter, Arial" font-size="14" font-weight="800">BROWSE SOUNDS →</text>
+  <text x="72" y="560" fill="#F2F2F4" font-family="Arial Black, Impact" font-size="28">BROWSE BY CATEGORY</text>
+  <rect x="72" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="95" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">DRUM KITS</text><rect x="316" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="339" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">MELODY LOOPS</text><rect x="560" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="583" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">ONE SHOTS</text><rect x="804" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="827" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">PRESETS</text><rect x="1048" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="1071" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">MIDI PACKS</text><rect x="1292" y="590" width="220" height="145" rx="12" fill="#111116" stroke="#2A2A31"/><text x="1315" y="680" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">TOOLS</text>
+  <text x="72" y="800" fill="#F2F2F4" font-family="Arial Black, Impact" font-size="28">NEW RELEASES</text>
+  <rect x="72" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="95" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 1</text><rect x="316" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="339" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 2</text><rect x="560" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="583" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 3</text><rect x="804" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="827" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 4</text><rect x="1048" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="1071" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 5</text><rect x="1292" y="830" width="220" height="120" rx="12" fill="#111116" stroke="#2A2A31"/><text x="1315" y="890" fill="#F2F2F4" font-family="Inter, Arial" font-size="18" font-weight="800">VOL. 6</text>
+  <rect x="0" y="902" width="1600" height="98" fill="rgba(11,11,13,.96)" stroke="#2A2A31"/>
+  <text x="72" y="960" fill="#F2F2F4" font-family="Inter, Arial" font-size="20" font-weight="800">GLOBAL AUDIO PLAYER</text>
+  <rect x="630" y="942" width="620" height="18" rx="9" fill="#2A2A31"/><rect x="630" y="942" width="240" height="18" rx="9" fill="#C6FF00"/>
+</svg>

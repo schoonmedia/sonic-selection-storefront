@@ -1,0 +1,29 @@
+{
+  "brand": "Sonic Selection",
+  "tagline": "Sounds that inspire. Tools that elevate.",
+  "positioning": "Premium sound packs and producer tools for modern music producers.",
+  "personality": [
+    "modern",
+    "premium",
+    "focused",
+    "inspiring",
+    "creative"
+  ],
+  "colors": {
+    "jet_black": "#0B0B0D",
+    "graphite": "#16161A",
+    "dark_slate": "#2A2A31",
+    "light": "#F2F2F4",
+    "electric_lime": "#C6FF00",
+    "gold": "#D4AF7A",
+    "muted": "#A8A8AE",
+    "border": "#2A2A31",
+    "danger": "#FF4D4D",
+    "success": "#C6FF00"
+  },
+  "typography": {
+    "display_recommendation": "Clash Display / Orbitron / Space Grotesk / Arial Black fallback",
+    "body_recommendation": "Inter / system-ui / sans-serif",
+    "note": "No font files included. Add licensed fonts manually in Shopify/Hydrogen."
+  }
+}

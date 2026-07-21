@@ -8,6 +8,7 @@ import {
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
 import {useFavoritesStore} from '~/stores/favoritesStore';
+import {BrandLogo} from '~/components/BrandLogo';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -33,8 +34,9 @@ export function Header({
         to="/"
         style={activeLinkStyle}
         end
+        aria-label={shop.name}
       >
-        <strong>{shop.name}</strong>
+        <BrandLogo />
       </NavLink>
       <HeaderMenu
         menu={menu}

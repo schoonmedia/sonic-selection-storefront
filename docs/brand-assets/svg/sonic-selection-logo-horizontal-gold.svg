@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="220" viewBox="0 0 920 220" role="img" aria-label="Sonic Selection logo horizontal">
+  <rect width="920" height="220" fill="none"/>
+  <g transform="translate(44 38) scale(1.1)"><g fill="none" stroke="#D4AF7A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M98 25H44C28 25 20 34 20 45.5S29 66 44 66h40c9.5 0 15 5 15 12.5S93.5 91 84 91H30"/>
+    <path d="M30 37h54c16 0 24 9 24 20.5S99 78 84 78H44c-9.5 0-15 5-15 12.5S34.5 103 44 103h54"/>
+    <path d="M40 51h48" opacity=".55"/>
+    <path d="M40 78h48" opacity=".55"/>
+  </g></g>
+  <text x="205" y="94" fill="#D4AF7A" font-family="Arial Black, Impact, Orbitron, sans-serif" font-size="58" font-weight="900" letter-spacing="4">SONIC</text>
+  <text x="205" y="156" fill="#D4AF7A" font-family="Arial Black, Impact, Orbitron, sans-serif" font-size="58" font-weight="900" letter-spacing="4">SELECTION</text>
+  <text x="205" y="190" fill="#C6FF00" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="5">SOUNDS THAT INSPIRE. TOOLS THAT ELEVATE.</text>
+</svg>

@@ -1,0 +1,52 @@
+{
+  "announcement": "NEW RELEASE: DARK TRAP VOL. 5 — OUT NOW",
+  "navigation": [
+    "Sound Packs",
+    "Drum Kits",
+    "MIDI",
+    "Presets",
+    "Tools",
+    "Bundles",
+    "Free",
+    "Blog"
+  ],
+  "hero": {
+    "kicker": "Next Level Sounds",
+    "headline": "Sounds that inspire. Tools that elevate.",
+    "subline": "Premium sounds, loops, presets and tools for modern producers.",
+    "primary_cta": "Browse Sounds",
+    "secondary_cta": "New Releases"
+  },
+  "categories": [
+    {
+      "title": "Drum Kits",
+      "count": "421 Packs",
+      "icon": "icon-sound.svg"
+    },
+    {
+      "title": "Melody Loops",
+      "count": "312 Packs",
+      "icon": "icon-midi.svg"
+    },
+    {
+      "title": "One Shots",
+      "count": "986 Packs",
+      "icon": "icon-one-shots.svg"
+    },
+    {
+      "title": "Serum Presets",
+      "count": "432 Packs",
+      "icon": "icon-presets.svg"
+    },
+    {
+      "title": "MIDI Packs",
+      "count": "278 Packs",
+      "icon": "icon-midi.svg"
+    },
+    {
+      "title": "Tools",
+      "count": "156 Packs",
+      "icon": "icon-tools.svg"
+    }
+  ]
+}

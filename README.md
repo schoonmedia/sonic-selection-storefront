@@ -71,6 +71,12 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   "Apply"/"Remove"/Checkout. Dabei einen echten Bug gefunden und behoben:
   der Header hatte denselben z-index wie das Overlay, wodurch der Header
   beim Öffnen des Asides drübergelegen hätte statt dahinter zu verschwinden.
+- **Echtes Logo + Favicon:** offizielles Brand-Asset-Kit erhalten
+  (`docs/brand-assets/`) — Logo-Mark läuft jetzt als `<BrandLogo>`-
+  Komponente im Header (SVG, `currentColor`, erbt die Hover-Farbe des Links)
+  statt des Platzhaltertexts "My Store". Favicon ist der offizielle Lime-
+  Mark. `--ss-font-display`/`--ss-font-body`-Tokens aus dem Kit ergänzt
+  (nur Font-Stacks, keine Font-Dateien — Lizenzhinweis im Kit beachtet).
 
 ## Was fehlt (bewusst, laut Bauplan)
 
@@ -121,10 +127,12 @@ Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
 regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
 erledigt. Offen aus dem ursprünglichen Bauplan:
 
-1. **Design-Feinschliff:** Header, Produktkarten/Collections und der
-   Cart-/Search-/Mobile-Aside sind erledigt (siehe oben). Als Nächstes:
-   Startseiten-Layout (Überschriften/Abstände) und Account-/Präferenzen-
-   Seiten auf die Sonic-Selection-Designsprache aus dem Mock-up bringen.
+1. **Design-Feinschliff:** Header (inkl. echtem Logo), Produktkarten/
+   Collections und der Cart-/Search-/Mobile-Aside sind erledigt (siehe
+   oben). Als Nächstes: Startseiten-Layout (Hero, Kategorien, Überschriften)
+   und Account-/Präferenzen-Seiten auf die Sonic-Selection-Designsprache
+   bringen — Referenz-Material dafür liegt in `docs/brand-assets/`
+   (Icon-Set, Homepage-Wireframe, Farb-/Font-Tokens).
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).

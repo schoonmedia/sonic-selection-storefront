@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-label="Sonic Selection product cover placeholder">
+  <rect width="900" height="1200" rx="38" fill="#101014"/>
+  <rect x="40" y="40" width="820" height="1120" rx="28" fill="#0B0B0D" stroke="#2A2A31" stroke-width="2"/>
+  <g transform="translate(58 58) scale(.78)"><g fill="none" stroke="#C6FF00" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M98 25H44C28 25 20 34 20 45.5S29 66 44 66h40c9.5 0 15 5 15 12.5S93.5 91 84 91H30"/>
+    <path d="M30 37h54c16 0 24 9 24 20.5S99 78 84 78H44c-9.5 0-15 5-15 12.5S34.5 103 44 103h54"/>
+    <path d="M40 51h48" opacity=".55"/>
+    <path d="M40 78h48" opacity=".55"/>
+  </g></g>
+  <circle cx="450" cy="405" r="250" fill="none" stroke="#C6FF00" stroke-opacity=".18" stroke-width="2"/>
+  <circle cx="450" cy="405" r="200" fill="none" stroke="#C6FF00" stroke-opacity=".18" stroke-width="2"/>
+  <circle cx="450" cy="405" r="150" fill="none" stroke="#C6FF00" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M150 430 C240 360 310 490 400 418 C500 338 590 338 750 430" stroke="#C6FF00" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M150 470 C260 410 330 520 420 458 C520 390 590 390 750 470" stroke="#F2F2F4" stroke-opacity=".32" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="450" y="795" fill="#F2F2F4" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="86" letter-spacing="2">DARK TRAP</text>
+  <text x="450" y="895" fill="#F2F2F4" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="86" letter-spacing="2">VOL. 5</text>
+  <text x="450" y="980" fill="#A8A8AE" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" letter-spacing="8">SOUND PACK</text>
+</svg>

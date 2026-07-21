@@ -284,13 +284,32 @@ button.reset:hover:not(:has(> *)) {
 
 .header-logo {
   color: var(--ss-light);
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
   margin-right: 1rem;
 }
 
 .header-logo:hover {
   color: var(--ss-gold);
+}
+
+.ss-logo {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.55rem;
+}
+
+.ss-logo-mark {
+  color: inherit;
+  flex-shrink: 0;
+  height: 26px;
+  width: 26px;
+}
+
+.ss-logo-type {
+  font-family: var(--ss-font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .header-menu-mobile-toggle {
