@@ -1,4 +1,4 @@
-# Sonic Selection — Hydrogen Storefront (Phase 1)
+# Sonic Selection — Hydrogen Storefront (Phase 3 abgeschlossen)
 
 Headless Shopify-Storefront auf Basis von [Hydrogen](https://hydrogen.shopify.dev)
 (React Router 7 + Vite) mit einer eigenen Sonic-Selection-Designsprache und
@@ -22,23 +22,31 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
   PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
   Push auf `main`.
 - **Metaobject-Spec** (`docs/shopify-audio-track-metaobject.md`): Felder für
-  das "Audio Track"-Metaobjekt + GraphQL-Query-Entwurf für Phase 3.
+  das "Audio Track"-Metaobjekt, in Shopify Admin angelegt und mit einem
+  Test-Track befüllt.
+- **Echte Shopify-Audiodaten verdrahtet**: `custom.audio_tracks`-Metafield
+  läuft über alle Produkt-Queries (Startseite, Collections, PDP), Produktkarten
+  zeigen einen Play-Button, die Produktdetailseite eine volle Tracklist.
+- **Persistenz mit voller Rehydration**: nach einem Reload werden nicht nur
+  Lautstärke/Position wiederhergestellt, sondern auch aktiver Track,
+  Playlist und Queue — über `/api/audio-products` (Server-Route, holt die
+  echten Shopify-Daten neu anhand der persistierten IDs).
+- **CI/CD** (`.github/workflows/ci.yml`): Lint + Typecheck + Build auf jedem
+  PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
+  Push auf `main`. Läuft grün, verbunden mit dem echten Store.
 
-Typecheck, Lint und Build wurden vor der Übergabe verifiziert (0 Errors).
+Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
 
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Anbindung an deinen echten Shopify-Store (aktuell läuft `.env` gegen
-  Shopifys Mock-Shop, keine echten Zugangsdaten enthalten).
-- Das "Audio Track"-Metaobjekt ist in Shopify Admin noch nicht angelegt
-  (siehe `docs/shopify-audio-track-metaobject.md`).
-- `ProductItem.tsx` hat nur einen Kommentar, wo `<ProductPlayButton>`
-  später reinkommt — bewusst noch nicht verdrahtet, da die echten
-  Track-Daten fehlen.
 - Header/Produktkarten/Collections sind noch Skeleton-Standard, nicht das
-  Sonic-Selection-Design aus dem Mock-up.
-- `OXYGEN_DEPLOYMENT_TOKEN` ist noch nicht als GitHub Secret hinterlegt —
-  die CI/CD-Deploy-Jobs laufen erst, wenn das gesetzt ist.
+  volle Sonic-Selection-Design aus dem Mock-up (nur der Player selbst hat
+  die eigene Designsprache).
+- Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
+- Favoriten, "Zuletzt gehört" / Continue-Listening, Empfehlungs-Engine —
+  noch nicht begonnen.
+- Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
+  werden, sobald echte Produkte drin sind.
 
 ## Erste Schritte lokal
 
@@ -74,19 +82,23 @@ nötig) und schreibt die echten Store-Variablen in `.env`.
 
 ## Nächste Claude-Prompts (aus dem Bauplan)
 
-1. **Schritt 2 (Player-Prototyp testen):** 3 lokale MP3s in `public/` legen,
-   `playerStore.loadProduct()` testweise mit Dummy-`AudioProduct`/`AudioTrack`
-   aus einer Testseite aufrufen, Play/Pause/Skip/Lautstärke im Browser
-   durchklicken.
-2. **Schritt 3 (Shopify-Audiodaten):** Metaobject-Definition in Shopify
-   Admin nach `docs/shopify-audio-track-metaobject.md` anlegen, dann
-   `app/graphql/AudioTracksQuery.ts` erstellen und codegen laufen lassen
-   (`npm run codegen`).
-3. **Schritt 4 (Produktkarten):** `ProductItem.tsx` TODO auflösen —
-   `<ProductPlayButton>` einbauen, sobald die Query echte Tracks liefert.
-4. **Schritt 5 (Persistenz-Feinschliff):** `usePlayerPersistence` erweitern,
-   damit `activeTrack`/`playlist` nach Reload aus den persistierten IDs neu
-   geladen werden (aktuell wird nur Lautstärke/Position wiederhergestellt).
+Schritte 2–5 (Player-Prototyp, Shopify-Audiodaten, Produktkarten,
+Persistenz-Feinschliff) sind erledigt. Offen aus dem ursprünglichen Bauplan:
+
+1. **Design-Feinschliff:** Header/Produktkarten/Collections auf die
+   Sonic-Selection-Designsprache aus dem Mock-up bringen (aktuell noch
+   Skeleton-Standard-Layout).
+2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
+   tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
+   Track-Upload).
+3. **Favoriten:** Herz-Button auf Produktkarte/PDP, Speicherung (Metafield
+   auf Customer oder eigener Storage), Übersichtsseite.
+4. **Zuletzt gehört / Continue-Listening:** eigener Verlauf (mehr als nur
+   der zuletzt aktive Track), Startseiten-Sektion.
+5. **Empfehlungs-Engine:** erst regelbasiert (gleiches Genre/BPM-Bereich),
+   später ggf. KI-gestützt.
+6. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
+   echte Produkte vorhanden sind.
 
 ## Ordnerstruktur (Player-relevant)
 
@@ -98,6 +110,9 @@ app/
 ├── stores/playerStore.ts
 ├── hooks/              useAudioEngine, useMediaSession, usePlayerPersistence
 ├── services/           audioAnalytics, playerStorage
+├── lib/                fragments.ts (AudioTracksMetafield-Fragment),
+│                       audioTracks.ts (mapAudioTracks, toAudioProduct)
+├── routes/api.audio-products.tsx   Server-Route für Persistenz-Rehydration
 └── types/audio.ts
 docs/shopify-audio-track-metaobject.md
 .github/workflows/ci.yml
