@@ -32,6 +32,9 @@ export default [
       '**/*.generated.d.ts',
       '**/.react-router/',
       '**/packages/hydrogen/dist/',
+      // Reference-only brand asset kit (not part of the tsconfig project,
+      // not imported anywhere) — see docs/brand-assets/README.md.
+      'docs/brand-assets/',
     ],
   },
   ...fixupConfigRules(
