@@ -7,6 +7,7 @@ import type {
 } from 'storefrontapi.generated';
 import {useVariantUrl} from '~/lib/variants';
 import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
+import {FavoriteButton} from '~/components/audio/FavoriteButton';
 import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
 
 export function ProductItem({
@@ -46,6 +47,7 @@ export function ProductItem({
           <Money data={product.priceRange.minVariantPrice} />
         </small>
       </Link>
+      <FavoriteButton productId={product.id} />
       {tracks.length > 0 && (
         <ProductPlayButton
           product={audioProduct}

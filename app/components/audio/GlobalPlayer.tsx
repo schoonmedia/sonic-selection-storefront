@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {usePlayerStore} from '~/stores/playerStore';
 import {useAudioEngine} from '~/hooks/useAudioEngine';
 import {usePlayerPersistence} from '~/hooks/usePlayerPersistence';
+import {useFavoritesPersistence} from '~/hooks/useFavoritesPersistence';
 import {useMediaSession} from '~/hooks/useMediaSession';
 import {MiniPlayer} from '~/components/audio/MiniPlayer';
 import {MobilePlayer} from '~/components/audio/MobilePlayer';
@@ -28,6 +29,7 @@ export function GlobalPlayer() {
 
   const {seek} = useAudioEngine();
   usePlayerPersistence();
+  useFavoritesPersistence();
   useMediaSession(seek);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
 import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
+import {FavoriteButton} from '~/components/audio/FavoriteButton';
 import {formatTime} from '~/components/audio/ProgressBar';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -108,7 +109,10 @@ export default function Product() {
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
       <div className="product-main">
-        <h1>{title}</h1>
+        <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+          <h1 style={{margin: 0}}>{title}</h1>
+          <FavoriteButton productId={product.id} />
+        </div>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}

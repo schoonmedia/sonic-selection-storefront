@@ -66,10 +66,18 @@ const AUDIO_PRODUCTS_BY_IDS_QUERY = `#graphql
         handle
         title
         featuredImage {
+          id
+          altText
           url
+          width
+          height
         }
         priceRange {
           minVariantPrice {
+            amount
+            currencyCode
+          }
+          maxVariantPrice {
             amount
             currencyCode
           }

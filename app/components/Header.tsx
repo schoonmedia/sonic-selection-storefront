@@ -7,6 +7,7 @@ import {
 } from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
+import {useFavoritesStore} from '~/stores/favoritesStore';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -109,6 +110,7 @@ function HeaderCtas({
           </Await>
         </Suspense>
       </NavLink>
+      <FavoritesLink />
       <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
@@ -124,6 +126,20 @@ function HeaderMenuMobileToggle() {
     >
       <h3>☰</h3>
     </button>
+  );
+}
+
+function FavoritesLink() {
+  const count = useFavoritesStore((s) => s.favorites.length);
+  return (
+    <NavLink
+      className="header-favorites-link"
+      prefetch="intent"
+      to="/favorites"
+      style={activeLinkStyle}
+    >
+      ♥{count > 0 ? ` ${count}` : ''}
+    </NavLink>
   );
 }
 

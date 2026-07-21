@@ -622,10 +622,17 @@ export type AudioProductsByIdsQuery = {
           'id' | 'handle' | 'title'
         > & {
             featuredImage?: StorefrontAPI.Maybe<
-              Pick<StorefrontAPI.Image, 'url'>
+              Pick<
+                StorefrontAPI.Image,
+                'id' | 'altText' | 'url' | 'width' | 'height'
+              >
             >;
             priceRange: {
               minVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
+              maxVariantPrice: Pick<
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
@@ -1715,7 +1722,7 @@ interface GeneratedQueryTypes {
     return: RecommendedProductsQuery;
     variables: RecommendedProductsQueryVariables;
   };
-  '#graphql\n  query AudioProductsByIds(\n    $ids: [ID!]!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    nodes(ids: $ids) {\n      __typename\n      ... on Product {\n        id\n        handle\n        title\n        featuredImage {\n          url\n        }\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        ...AudioTracksMetafield\n      }\n    }\n  }\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n': {
+  '#graphql\n  query AudioProductsByIds(\n    $ids: [ID!]!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    nodes(ids: $ids) {\n      __typename\n      ... on Product {\n        id\n        handle\n        title\n        featuredImage {\n          id\n          altText\n          url\n          width\n          height\n        }\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n          maxVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        ...AudioTracksMetafield\n      }\n    }\n  }\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n': {
     return: AudioProductsByIdsQuery;
     variables: AudioProductsByIdsQueryVariables;
   };

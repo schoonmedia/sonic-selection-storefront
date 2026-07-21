@@ -66,7 +66,8 @@ export type PlayerEventName =
   | 'track_completed'
   | 'product_opened'
   | 'product_added_to_cart'
-  | 'favorite_added';
+  | 'favorite_added'
+  | 'favorite_removed';
 
 export interface PlayerEvent {
   name: PlayerEventName;
