@@ -429,30 +429,156 @@ export type AudioTracksMetafieldFragment = {
   }>;
 };
 
-export type FeaturedCollectionFragment = Pick<
+export type HomeCategoryFragment = Pick<
   StorefrontAPI.Collection,
   'id' | 'title' | 'handle'
-> & {
-  image?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Image, 'id' | 'url' | 'altText' | 'width' | 'height'>
-  >;
-};
+> & {products: {nodes: Array<Pick<StorefrontAPI.Product, 'id'>>}};
 
-export type FeaturedCollectionQueryVariables = StorefrontAPI.Exact<{
+export type HomeCategoriesQueryVariables = StorefrontAPI.Exact<{
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
   language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
 }>;
 
-export type FeaturedCollectionQuery = {
+export type HomeCategoriesQuery = {
   collections: {
     nodes: Array<
       Pick<StorefrontAPI.Collection, 'id' | 'title' | 'handle'> & {
-        image?: StorefrontAPI.Maybe<
+        products: {nodes: Array<Pick<StorefrontAPI.Product, 'id'>>};
+      }
+    >;
+  };
+};
+
+export type NewReleaseProductFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+> & {
+  priceRange: {
+    minVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+  };
+  featuredImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'id' | 'url' | 'altText' | 'width' | 'height'>
+  >;
+  audioTracks?: StorefrontAPI.Maybe<{
+    references?: StorefrontAPI.Maybe<{
+      nodes: Array<
+        Pick<StorefrontAPI.Metaobject, 'id'> & {
+          title?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+          previewUrl?: StorefrontAPI.Maybe<{
+            reference?: StorefrontAPI.Maybe<
+              | Pick<StorefrontAPI.GenericFile, 'url'>
+              | {image?: StorefrontAPI.Maybe<Pick<StorefrontAPI.Image, 'url'>>}
+            >;
+          }>;
+          durationSeconds?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+          bpm?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+          key?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+          genre?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+          position?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.MetaobjectField, 'value'>
+          >;
+        }
+      >;
+    }>;
+  }>;
+};
+
+export type HomeNewReleasesQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeNewReleasesQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
+        priceRange: {
+          minVariantPrice: Pick<
+            StorefrontAPI.MoneyV2,
+            'amount' | 'currencyCode'
+          >;
+        };
+        featuredImage?: StorefrontAPI.Maybe<
           Pick<
             StorefrontAPI.Image,
             'id' | 'url' | 'altText' | 'width' | 'height'
           >
         >;
+        audioTracks?: StorefrontAPI.Maybe<{
+          references?: StorefrontAPI.Maybe<{
+            nodes: Array<
+              Pick<StorefrontAPI.Metaobject, 'id'> & {
+                title?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+                previewUrl?: StorefrontAPI.Maybe<{
+                  reference?: StorefrontAPI.Maybe<
+                    | Pick<StorefrontAPI.GenericFile, 'url'>
+                    | {
+                        image?: StorefrontAPI.Maybe<
+                          Pick<StorefrontAPI.Image, 'url'>
+                        >;
+                      }
+                  >;
+                }>;
+                durationSeconds?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+                bpm?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+                key?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+                genre?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+                position?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MetaobjectField, 'value'>
+                >;
+              }
+            >;
+          }>;
+        }>;
+      }
+    >;
+  };
+};
+
+export type HeroProductFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+> & {
+  priceRange: {
+    minVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+  };
+};
+
+export type HomeHeroProductQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeHeroProductQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
+        priceRange: {
+          minVariantPrice: Pick<
+            StorefrontAPI.MoneyV2,
+            'amount' | 'currencyCode'
+          >;
+        };
       }
     >;
   };
@@ -1714,9 +1840,17 @@ interface GeneratedQueryTypes {
     return: FooterQuery;
     variables: FooterQueryVariables;
   };
-  '#graphql\n  fragment FeaturedCollection on Collection {\n    id\n    title\n    image {\n      id\n      url\n      altText\n      width\n      height\n    }\n    handle\n  }\n  query FeaturedCollection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...FeaturedCollection\n      }\n    }\n  }\n': {
-    return: FeaturedCollectionQuery;
-    variables: FeaturedCollectionQueryVariables;
+  '#graphql\n  fragment HomeCategory on Collection {\n    id\n    title\n    handle\n    products(first: 50) {\n      nodes {\n        id\n      }\n    }\n  }\n  query HomeCategories($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    collections(first: 12, sortKey: TITLE) {\n      nodes {\n        ...HomeCategory\n      }\n    }\n  }\n': {
+    return: HomeCategoriesQuery;
+    variables: HomeCategoriesQueryVariables;
+  };
+  '#graphql\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n  fragment NewReleaseProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      url\n      altText\n      width\n      height\n    }\n    ...AudioTracksMetafield\n  }\n  query HomeNewReleases($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 6, sortKey: CREATED_AT, reverse: true) {\n      nodes {\n        ...NewReleaseProduct\n      }\n    }\n  }\n': {
+    return: HomeNewReleasesQuery;
+    variables: HomeNewReleasesQueryVariables;
+  };
+  '#graphql\n  fragment HeroProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n  }\n  query HomeHeroProduct($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 1, query: "title:\'Dark Trap Vol. 5\'") {\n      nodes {\n        ...HeroProduct\n      }\n    }\n  }\n': {
+    return: HomeHeroProductQuery;
+    variables: HomeHeroProductQueryVariables;
   };
   '#graphql\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n  fragment RecommendedProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      url\n      altText\n      width\n      height\n    }\n    ...AudioTracksMetafield\n  }\n  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 4, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...RecommendedProduct\n      }\n    }\n  }\n': {
     return: RecommendedProductsQuery;
