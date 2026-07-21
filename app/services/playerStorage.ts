@@ -6,6 +6,13 @@
 
 const STORAGE_KEY = 'sonic-selection:player-state:v1';
 
+export interface PersistedQueueEntry {
+  trackId: string;
+  /** Needed to know which product to re-fetch on rehydrate — a queued
+   * track can belong to a different product than the active one. */
+  productId: string;
+}
+
 export interface PersistedPlayerState {
   activeProductId: string | null;
   activeTrackId: string | null;
@@ -13,8 +20,9 @@ export interface PersistedPlayerState {
   position: number;
   volume: number;
   isMuted: boolean;
-  /** Track IDs, resolved back to full AudioTrack objects on rehydrate. */
-  queueTrackIds: string[];
+  /** Resolved back to full AudioTrack objects on rehydrate via a
+   * /api/audio-products lookup keyed by productId. */
+  queue: PersistedQueueEntry[];
 }
 
 function isBrowser(): boolean {

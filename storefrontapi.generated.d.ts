@@ -564,6 +564,113 @@ export type RecommendedProductsQuery = {
   };
 };
 
+export type AudioProductsByIdsQueryVariables = StorefrontAPI.Exact<{
+  ids:
+    | Array<StorefrontAPI.Scalars['ID']['input']>
+    | StorefrontAPI.Scalars['ID']['input'];
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type AudioProductsByIdsQuery = {
+  nodes: Array<
+    StorefrontAPI.Maybe<
+      | {
+          __typename:
+            | 'AppliedGiftCard'
+            | 'Article'
+            | 'Blog'
+            | 'Cart'
+            | 'CartLine'
+            | 'Collection'
+            | 'Comment'
+            | 'Company'
+            | 'CompanyContact'
+            | 'CompanyLocation'
+            | 'ComponentizableCartLine'
+            | 'ExternalVideo'
+            | 'GenericFile'
+            | 'Location'
+            | 'MailingAddress'
+            | 'Market'
+            | 'MediaImage'
+            | 'MediaPresentation'
+            | 'Menu'
+            | 'MenuItem';
+        }
+      | {
+          __typename:
+            | 'Metafield'
+            | 'Metaobject'
+            | 'Model3d'
+            | 'Order'
+            | 'Page'
+            | 'ProductOption'
+            | 'ProductOptionValue'
+            | 'ProductVariant'
+            | 'Shop'
+            | 'ShopPayInstallmentsFinancingPlan'
+            | 'ShopPayInstallmentsFinancingPlanTerm'
+            | 'ShopPayInstallmentsProductVariantPricing'
+            | 'ShopPolicy'
+            | 'TaxonomyCategory'
+            | 'UrlRedirect'
+            | 'Video';
+        }
+      | ({__typename: 'Product'} & Pick<
+          StorefrontAPI.Product,
+          'id' | 'handle' | 'title'
+        > & {
+            featuredImage?: StorefrontAPI.Maybe<
+              Pick<StorefrontAPI.Image, 'url'>
+            >;
+            priceRange: {
+              minVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
+            };
+            audioTracks?: StorefrontAPI.Maybe<{
+              references?: StorefrontAPI.Maybe<{
+                nodes: Array<
+                  Pick<StorefrontAPI.Metaobject, 'id'> & {
+                    title?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                    previewUrl?: StorefrontAPI.Maybe<{
+                      reference?: StorefrontAPI.Maybe<
+                        | Pick<StorefrontAPI.GenericFile, 'url'>
+                        | {
+                            image?: StorefrontAPI.Maybe<
+                              Pick<StorefrontAPI.Image, 'url'>
+                            >;
+                          }
+                      >;
+                    }>;
+                    durationSeconds?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                    bpm?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                    key?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                    genre?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                    position?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MetaobjectField, 'value'>
+                    >;
+                  }
+                >;
+              }>;
+            }>;
+          })
+    >
+  >;
+};
+
 export type ArticleQueryVariables = StorefrontAPI.Exact<{
   articleHandle: StorefrontAPI.Scalars['String']['input'];
   blogHandle: StorefrontAPI.Scalars['String']['input'];
@@ -1607,6 +1714,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n  fragment RecommendedProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      url\n      altText\n      width\n      height\n    }\n    ...AudioTracksMetafield\n  }\n  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 4, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...RecommendedProduct\n      }\n    }\n  }\n': {
     return: RecommendedProductsQuery;
     variables: RecommendedProductsQueryVariables;
+  };
+  '#graphql\n  query AudioProductsByIds(\n    $ids: [ID!]!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    nodes(ids: $ids) {\n      __typename\n      ... on Product {\n        id\n        handle\n        title\n        featuredImage {\n          url\n        }\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        ...AudioTracksMetafield\n      }\n    }\n  }\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n': {
+    return: AudioProductsByIdsQuery;
+    variables: AudioProductsByIdsQueryVariables;
   };
   '#graphql\n  query Article(\n    $articleHandle: String!\n    $blogHandle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    blog(handle: $blogHandle) {\n      handle\n      articleByHandle(handle: $articleHandle) {\n        handle\n        title\n        contentHtml\n        publishedAt\n        author: authorV2 {\n          name\n        }\n        image {\n          id\n          altText\n          url\n          width\n          height\n        }\n        seo {\n          description\n          title\n        }\n      }\n    }\n  }\n': {
     return: ArticleQuery;

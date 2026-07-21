@@ -56,6 +56,14 @@ export function useAudioEngine() {
     const onLoadedMetadata = () => {
       setDuration(audio.duration || 0);
       setLoading(false);
+      // Resume from a persisted position (see usePlayerPersistence). Normal
+      // track changes (playTrack/loadProduct/playNext/playPrevious) always
+      // reset the store's currentTime to 0 first, so this is a no-op for
+      // every case except rehydration-after-reload.
+      const resumeAt = usePlayerStore.getState().currentTime;
+      if (resumeAt > 0 && Math.abs(audio.currentTime - resumeAt) > 0.5) {
+        audio.currentTime = resumeAt;
+      }
     };
     const onWaiting = () => setLoading(true);
     const onPlaying = () => setLoading(false);
