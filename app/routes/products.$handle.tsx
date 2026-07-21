@@ -17,6 +17,7 @@ import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
 import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
 import {FavoriteButton} from '~/components/audio/FavoriteButton';
 import {formatTime} from '~/components/audio/ProgressBar';
+import {RecommendedTracksSection} from '~/components/audio/RecommendedTracksSection';
 
 export const meta: Route.MetaFunction = ({data}) => {
   return [
@@ -160,6 +161,7 @@ export default function Product() {
         <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
         <br />
       </div>
+      <RecommendedTracksSection productId={product.id} />
       <Analytics.ProductView
         data={{
           products: [

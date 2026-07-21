@@ -18,9 +18,6 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
   gemountet — bleibt bei Navigation erhalten.
 - **Design-Tokens** (`app/styles/audio-player.css`): Farben/Radien aus dem
   Mock-up (Jet Black, Graphite, Electric Lime, Gold).
-- **CI/CD** (`.github/workflows/ci.yml`): Lint + Typecheck + Build auf jedem
-  PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
-  Push auf `main`.
 - **Metaobject-Spec** (`docs/shopify-audio-track-metaobject.md`): Felder für
   das "Audio Track"-Metaobjekt, in Shopify Admin angelegt und mit einem
   Test-Track befüllt.
@@ -36,6 +33,12 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
   localStorage, genau wie der Player selbst.
 - **Zuletzt gehört**: Startseiten-Sektion mit den letzten Produkten/Tracks,
   die der Besucher abgespielt hat, inkl. direktem Play-Button.
+- **Empfehlungs-Engine (regelbasiert)**: "Das könnte dir auch gefallen" auf
+  der Produktseite — `/api/recommendations` scort andere Produkte nach
+  gleichem Genre + ähnlichem BPM (bester Track-Match zählt) und zeigt die
+  Top-Treffer. Zeigt aktuell nichts an, weil nur ein Testprodukt existiert —
+  erledigt sich von selbst, sobald mehr Sound Packs mit Genre/BPM-Angaben
+  drin sind.
 - **CI/CD** (`.github/workflows/ci.yml`): Lint + Typecheck + Build auf jedem
   PR, Preview-Deploy auf Oxygen für PRs, Production-Deploy auf Oxygen bei
   Push auf `main`. Läuft grün, verbunden mit dem echten Store.
@@ -48,7 +51,6 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   volle Sonic-Selection-Design aus dem Mock-up (nur der Player selbst hat
   die eigene Designsprache).
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
-- Empfehlungs-Engine — noch nicht begonnen.
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
 
@@ -87,8 +89,9 @@ nötig) und schreibt die echten Store-Variablen in `.env`.
 ## Nächste Claude-Prompts (aus dem Bauplan)
 
 Schritte 2–5 (Player-Prototyp, Shopify-Audiodaten, Produktkarten,
-Persistenz-Feinschliff) sowie Favoriten und "Zuletzt gehört" sind erledigt.
-Offen aus dem ursprünglichen Bauplan:
+Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört" und eine
+regelbasierte Empfehlungs-Engine sind erledigt. Offen aus dem
+ursprünglichen Bauplan:
 
 1. **Design-Feinschliff:** Header/Produktkarten/Collections auf die
    Sonic-Selection-Designsprache aus dem Mock-up bringen (aktuell noch
@@ -96,10 +99,11 @@ Offen aus dem ursprünglichen Bauplan:
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
-3. **Empfehlungs-Engine:** erst regelbasiert (gleiches Genre/BPM-Bereich),
-   später ggf. KI-gestützt.
+3. **Empfehlungs-Engine verfeinern:** aktuell regelbasiert (Genre + BPM);
+   später ggf. auf Kaufverhalten/KI umstellen, wenn genug Daten da sind.
 4. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
-   echte Produkte vorhanden sind.
+   echte Produkte vorhanden sind — Empfehlungen brauchen mindestens 2
+   Produkte mit Genre/BPM, um überhaupt etwas anzuzeigen.
 
 ## Ordnerstruktur (Player-relevant)
 
