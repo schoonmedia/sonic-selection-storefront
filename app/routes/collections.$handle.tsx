@@ -4,6 +4,7 @@ import {getPaginationVariables, Analytics} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {ProductItem} from '~/components/ProductItem';
+import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import type {ProductItemFragment} from 'storefrontapi.generated';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -120,11 +121,13 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
         ...MoneyProductItem
       }
     }
+    ...AudioTracksMetafield
   }
 ` as const;
 
 // NOTE: https://shopify.dev/docs/api/storefront/2022-04/objects/collection
 const COLLECTION_QUERY = `#graphql
+  ${AUDIO_TRACKS_METAFIELD_FRAGMENT}
   ${PRODUCT_ITEM_FRAGMENT}
   query Collection(
     $handle: String!

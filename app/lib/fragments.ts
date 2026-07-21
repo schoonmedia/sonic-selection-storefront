@@ -240,3 +240,56 @@ export const FOOTER_QUERY = `#graphql
   }
   ${MENU_FRAGMENT}
 ` as const;
+
+// --- Sonic Selection: Audio Track metaobject fragments ------------------
+// Reused across every product-listing query (ProductItem, CollectionItem,
+// RecommendedProduct) and the single-product query, so a track added in
+// Shopify Admin shows up everywhere without touching each route's query.
+export const AUDIO_TRACK_FIELDS_FRAGMENT = `#graphql
+  fragment AudioTrackFields on Metaobject {
+    id
+    title: field(key: "title") {
+      value
+    }
+    previewUrl: field(key: "preview_url") {
+      reference {
+        ... on GenericFile {
+          url
+        }
+        ... on MediaImage {
+          image {
+            url
+          }
+        }
+      }
+    }
+    durationSeconds: field(key: "duration_seconds") {
+      value
+    }
+    bpm: field(key: "bpm") {
+      value
+    }
+    key: field(key: "key") {
+      value
+    }
+    genre: field(key: "genre") {
+      value
+    }
+    position: field(key: "position") {
+      value
+    }
+  }
+` as const;
+
+export const AUDIO_TRACKS_METAFIELD_FRAGMENT = `#graphql
+  ${AUDIO_TRACK_FIELDS_FRAGMENT}
+  fragment AudioTracksMetafield on Product {
+    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {
+      references(first: 20) {
+        nodes {
+          ...AudioTrackFields
+        }
+      }
+    }
+  }
+` as const;

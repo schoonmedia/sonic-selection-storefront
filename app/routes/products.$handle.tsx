@@ -12,6 +12,10 @@ import {ProductPrice} from '~/components/ProductPrice';
 import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
+import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
+import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
+import {formatTime} from '~/components/audio/ProgressBar';
 
 export const meta: Route.MetaFunction = ({data}) => {
   return [
@@ -97,6 +101,9 @@ export default function Product() {
 
   const {title, descriptionHtml} = product;
 
+  const audioProduct = toAudioProduct(product);
+  const tracks = mapAudioTracks(product.audioTracks, product.id);
+
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
@@ -112,6 +119,35 @@ export default function Product() {
           selectedVariant={selectedVariant}
         />
         <br />
+        {tracks.length > 0 && (
+          <div className="ss-product-tracklist">
+            <p>
+              <strong>Preview</strong>
+            </p>
+            <ul>
+              {tracks.map((track) => (
+                <li key={track.id} className="ss-product-tracklist__row">
+                  <ProductPlayButton
+                    product={audioProduct}
+                    playlist={tracks}
+                    track={track}
+                  />
+                  <span className="ss-product-tracklist__title">
+                    {track.title}
+                  </span>
+                  <span className="ss-product-tracklist__meta">
+                    {track.bpm ? `${track.bpm} BPM` : ''}
+                    {track.bpm && track.key ? ' · ' : ''}
+                    {track.key ?? ''}
+                  </span>
+                  <span className="ss-product-tracklist__duration">
+                    {formatTime(track.duration)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <br />
         <p>
           <strong>Description</strong>
@@ -213,8 +249,10 @@ const PRODUCT_FRAGMENT = `#graphql
       description
       title
     }
+    ...AudioTracksMetafield
   }
   ${PRODUCT_VARIANT_FRAGMENT}
+  ${AUDIO_TRACKS_METAFIELD_FRAGMENT}
 ` as const;
 
 const PRODUCT_QUERY = `#graphql

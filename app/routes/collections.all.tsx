@@ -3,6 +3,7 @@ import {useLoaderData} from 'react-router';
 import {getPaginationVariables, Image, Money} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {ProductItem} from '~/components/ProductItem';
+import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import type {CollectionItemFragment} from 'storefrontapi.generated';
 
 export const meta: Route.MetaFunction = () => {
@@ -93,6 +94,7 @@ const COLLECTION_ITEM_FRAGMENT = `#graphql
         ...MoneyCollectionItem
       }
     }
+    ...AudioTracksMetafield
   }
 ` as const;
 
@@ -118,5 +120,6 @@ const CATALOG_QUERY = `#graphql
       }
     }
   }
+  ${AUDIO_TRACKS_METAFIELD_FRAGMENT}
   ${COLLECTION_ITEM_FRAGMENT}
 ` as const;

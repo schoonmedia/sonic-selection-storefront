@@ -6,6 +6,7 @@ import type {
   FeaturedCollectionFragment,
   RecommendedProductsQuery,
 } from 'storefrontapi.generated';
+import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
 
@@ -148,6 +149,7 @@ const FEATURED_COLLECTION_QUERY = `#graphql
 ` as const;
 
 const RECOMMENDED_PRODUCTS_QUERY = `#graphql
+  ${AUDIO_TRACKS_METAFIELD_FRAGMENT}
   fragment RecommendedProduct on Product {
     id
     title
@@ -165,6 +167,7 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
       width
       height
     }
+    ...AudioTracksMetafield
   }
   query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {

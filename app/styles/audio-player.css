@@ -205,6 +205,15 @@ body:has(.ss-global-player) {
 }
 
 /* --- Product play button --------------------------------------------------*/
+.product-item-wrapper {
+  position: relative;
+}
+.product-item-wrapper .ss-play-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+}
 .ss-play-button {
   display: inline-flex;
   align-items: center;
@@ -229,6 +238,37 @@ body:has(.ss-global-player) {
 .ss-play-button[data-loading='true'] {
   opacity: 0.6;
   cursor: wait;
+}
+
+/* --- Product detail tracklist ----------------------------------------------*/
+.ss-product-tracklist ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ss-product-tracklist__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--ss-slate);
+}
+.ss-product-tracklist__row .ss-play-button {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.ss-product-tracklist__title {
+  flex: 1;
+}
+.ss-product-tracklist__meta {
+  color: var(--ss-gold);
+  font-size: 0.85em;
+}
+.ss-product-tracklist__duration {
+  color: var(--ss-light);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
 }
 
 /* --- Queue drawer ----------------------------------------------------------*/
