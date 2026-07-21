@@ -1123,6 +1123,60 @@ button.reset:hover:not(:has(> *)) {
   }
 }
 
+.genre-filter-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.genre-filter-chip {
+  align-items: center;
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: 999px;
+  color: var(--ss-light);
+  display: inline-flex;
+  font-size: 0.8rem;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.genre-filter-chip:hover {
+  border-color: var(--ss-lime);
+  color: var(--ss-lime);
+}
+
+.genre-filter-chip.is-active {
+  background: var(--ss-lime);
+  border-color: var(--ss-lime);
+  color: var(--ss-black);
+  font-weight: 700;
+}
+
+.genre-filter-chip-count {
+  color: var(--ss-muted);
+  font-size: 0.75rem;
+}
+
+.genre-filter-chip.is-active .genre-filter-chip-count {
+  color: color-mix(in srgb, var(--ss-black) 65%, transparent);
+}
+
+.genre-filter-clear {
+  color: var(--ss-muted);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.genre-filter-clear:hover {
+  color: var(--ss-lime);
+}
+
 .products-grid {
   display: grid;
   grid-gap: 1.5rem;
