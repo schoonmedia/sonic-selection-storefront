@@ -82,16 +82,35 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   `.ss-button-primary`-Klasse, Lime gefüllt) sind mit umgestellt. Globale
   Basis-Overrides (`a`, `hr`, `input`, `code`) sorgen dafür, dass auch noch
   nicht einzeln gestylte Skeleton-Reste automatisch lesbar bleiben.
+- **Produktkatalog + Kategorien:** 10 echte Shopify-Collections angelegt
+  (Drum Kits, Melody Loops, One Shots, Presets, MIDI Packs, Vocal Samples,
+  Sound FX, Tools, Bundles, Free) als automatisierte Collections
+  (Bedingung `Type is equal to <Wert>`), recherchiert per DeepSearch anhand
+  üblicher Sample-Pack-Shop-Kategorien (Splice, Loopmasters). Dazu 20 leere
+  Beispielprodukte (2 pro Kategorie, ohne Bilder/Audio) per CSV-Import
+  angelegt — sortieren sich automatisch in ihre Collection ein.
+- **Neues Startseiten-Frontend nach Mockup:** `docs/brand-assets/references/
+  reference-shopify-layout.png` komplett umgesetzt — site-weite
+  `<AnnouncementBar>` über dem Header, echter `<Hero>`-Bereich (Headline,
+  zwei CTAs, Produkt-Visual + "Listen & Buy"-Widget für den Dark-Trap-Vol.-5-
+  Release), `<FeatureIconsRow>` (High Quality Sounds / Producer Focused /
+  Royalty Free / Instant Download), `<CategoryGrid>` ("Browse by Category",
+  live aus den 10 echten Collections inkl. Pack-Anzahl) und
+  `<NewReleasesSection>` ("New Releases", neueste 6 Produkte mit "New"-Badge,
+  Play-Button und Fallback-Markendesign statt kaputter Bilder, solange keine
+  Cover-Art hochgeladen ist). Neue Komponenten unter `app/components/home/`.
 
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Startseiten-Layout im engeren Sinn (Hero-Bereich, Kategorie-Kacheln nach
-  Wireframe) ist noch nicht gebaut — aktuell nur Featured-Collection-Banner
-  + Produkt-Grids, kein eigener Hero. Referenz: `docs/brand-assets/previews/
-  homepage-wireframe.png`.
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
-  werden, sobald echte Produkte drin sind.
+  werden.
+- Echte Produktbilder/Cover-Art und Audiodateien für die 20 Platzhalter-
+  Produkte fehlen noch (bewusst "leer", laut Auftrag).
+- Header-Navigation zeigt aktuell noch das Fallback-Menü, nicht die im
+  Mockup gezeigten Einträge (Sound Packs, Drum Kits, MIDI, Presets, Tools,
+  Bundles, Free, Blog) — dafür müsste in Shopify Admin → Content → Menus
+  das Hauptmenü befüllt werden.
 
 ## Erste Schritte lokal
 
@@ -134,18 +153,17 @@ erledigt. Offen aus dem ursprünglichen Bauplan:
 
 1. **Design-Feinschliff:** kompletter Dark-Mode inkl. Header, Produktkarten/
    Collections, Cart-/Search-/Mobile-Aside, Footer, Account-Seiten und
-   echtem Logo ist erledigt (siehe oben). Als Nächstes: ein echter
-   Hero-Bereich + Kategorie-Kacheln auf der Startseite nach
-   `docs/brand-assets/previews/homepage-wireframe.png` — dafür fehlen noch
-   Kategorie-Daten (Drum Kits, Melody Loops, One Shots, ...) in Shopify.
+   echtem Logo ist erledigt (siehe oben). Das neue Startseiten-Frontend
+   (Announcement-Bar, Hero, Feature-Icons, Category-Grid, New Releases) nach
+   `docs/brand-assets/references/reference-shopify-layout.png` ist ebenfalls
+   erledigt. Offen: Header-Hauptmenü in Shopify Admin mit den Mockup-Einträgen
+   befüllen (aktuell Fallback-Menü).
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
 3. **Empfehlungs-Engine verfeinern:** aktuell regelbasiert (Genre + BPM);
    später ggf. auf Kaufverhalten/KI umstellen, wenn genug Daten da sind.
-4. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen, sobald
-   echte Produkte vorhanden sind — Empfehlungen brauchen mindestens 2
-   Produkte mit Genre/BPM, um überhaupt etwas anzuzeigen.
+4. **Aufräumen:** "Test Sound Pack"-Testartikel in Shopify löschen.
 5. **Content-Pipeline:** echte Sound Packs mit Audiodateien einpflegen —
    nächster großer Block, siehe Vision unten.
 

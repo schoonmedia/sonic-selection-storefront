@@ -1,10 +1,11 @@
-import {Await, useLoaderData, Link} from 'react-router';
+import {Await, useLoaderData} from 'react-router';
 import type {Route} from './+types/_index';
 import {Suspense} from 'react';
-import {Image} from '@shopify/hydrogen';
 import type {
-  FeaturedCollectionFragment,
   RecommendedProductsQuery,
+  HomeCategoriesQuery,
+  HomeNewReleasesQuery,
+  HomeHeroProductQuery,
 } from 'storefrontapi.generated';
 import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {ProductItem} from '~/components/ProductItem';
@@ -12,9 +13,18 @@ import {MockShopNotice} from '~/components/MockShopNotice';
 import {RecentlyPlayedSection} from '~/components/audio/RecentlyPlayedSection';
 import {ForYouSection} from '~/components/audio/ForYouSection';
 import {CUSTOMER_MUSIC_PREFERENCES_QUERY} from '~/graphql/customer-account/CustomerMusicPreferencesQuery';
+import {Hero} from '~/components/home/Hero';
+import {FeatureIconsRow} from '~/components/home/FeatureIconsRow';
+import {CategoryGrid} from '~/components/home/CategoryGrid';
+import {NewReleasesSection} from '~/components/home/NewReleasesSection';
 
 export const meta: Route.MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [
+    {
+      title:
+        'Sonic Selection | Sounds that inspire. Tools that elevate.',
+    },
+  ];
 };
 
 export async function loader(args: Route.LoaderArgs) {
@@ -32,14 +42,28 @@ export async function loader(args: Route.LoaderArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({context}: Route.LoaderArgs) {
-  const [{collections}] = await Promise.all([
-    context.storefront.query(FEATURED_COLLECTION_QUERY),
-    // Add other queries here, so that they are loaded in parallel
-  ]);
+  const [{collections}, {products: newReleaseProducts}, heroProductData] =
+    await Promise.all([
+      context.storefront.query(HOME_CATEGORIES_QUERY),
+      context.storefront.query(HOME_NEW_RELEASES_QUERY),
+      context.storefront
+        .query(HOME_HERO_PRODUCT_QUERY)
+        .catch((error: Error) => {
+          console.error(error);
+          return {products: {nodes: []}};
+        }),
+    ]);
 
   return {
     isShopLinked: Boolean(context.env.PUBLIC_STORE_DOMAIN),
-    featuredCollection: collections.nodes[0],
+    // "Home page" is a manual collection Shopify creates by default and
+    // isn't one of the Sonic Selection sample-pack categories — hide it
+    // from the Browse by Category grid.
+    categories: collections.nodes
+      .filter((collection) => collection.title !== 'Home page')
+      .slice(0, 10),
+    newReleases: newReleaseProducts.nodes,
+    heroProduct: heroProductData.products.nodes[0] ?? null,
   };
 }
 
@@ -95,37 +119,14 @@ export default function Homepage() {
   return (
     <div className="home">
       {data.isShopLinked ? null : <MockShopNotice />}
+      <Hero heroProduct={data.heroProduct} />
+      <FeatureIconsRow />
+      <CategoryGrid categories={data.categories} />
+      <NewReleasesSection products={data.newReleases} />
       <ForYou genres={data.preferredGenres} />
       <RecentlyPlayedSection />
-      <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
-  );
-}
-
-function FeaturedCollection({
-  collection,
-}: {
-  collection: FeaturedCollectionFragment;
-}) {
-  if (!collection) return null;
-  const image = collection?.image;
-  return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image
-            data={image}
-            sizes="100vw"
-            alt={image.altText || collection.title}
-          />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
-    </Link>
   );
 }
 
@@ -150,7 +151,7 @@ function RecommendedProducts({
 }) {
   return (
     <section
-      className="recommended-products"
+      className="recommended-products home-section"
       aria-labelledby="recommended-products"
     >
       <h2 id="recommended-products">Recommended Products</h2>
@@ -172,24 +173,75 @@ function RecommendedProducts({
   );
 }
 
-const FEATURED_COLLECTION_QUERY = `#graphql
-  fragment FeaturedCollection on Collection {
+const HOME_CATEGORIES_QUERY = `#graphql
+  fragment HomeCategory on Collection {
     id
     title
-    image {
+    handle
+    products(first: 50) {
+      nodes {
+        id
+      }
+    }
+  }
+  query HomeCategories($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    collections(first: 12, sortKey: TITLE) {
+      nodes {
+        ...HomeCategory
+      }
+    }
+  }
+` as const;
+
+const HOME_NEW_RELEASES_QUERY = `#graphql
+  ${AUDIO_TRACKS_METAFIELD_FRAGMENT}
+  fragment NewReleaseProduct on Product {
+    id
+    title
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    featuredImage {
       id
       url
       altText
       width
       height
     }
-    handle
+    ...AudioTracksMetafield
   }
-  query FeaturedCollection($country: CountryCode, $language: LanguageCode)
+  query HomeNewReleases($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
+    products(first: 6, sortKey: CREATED_AT, reverse: true) {
       nodes {
-        ...FeaturedCollection
+        ...NewReleaseProduct
+      }
+    }
+  }
+` as const;
+
+const HOME_HERO_PRODUCT_QUERY = `#graphql
+  fragment HeroProduct on Product {
+    id
+    title
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+  }
+  query HomeHeroProduct($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 1, query: "title:'Dark Trap Vol. 5'") {
+      nodes {
+        ...HeroProduct
       }
     }
   }
