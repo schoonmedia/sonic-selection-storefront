@@ -85,8 +85,10 @@ img {
 }
 
 aside {
-  background: var(--color-light);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+  background: var(--ss-graphite);
+  border-left: 1px solid var(--ss-slate);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  color: var(--ss-light);
   height: 100vh;
   width: min(var(--aside-width), 100vw);
   position: fixed;
@@ -95,9 +97,17 @@ aside {
   transition: transform 200ms ease-in-out;
 }
 
+aside a {
+  color: var(--ss-light);
+}
+
+aside a:hover {
+  color: var(--ss-lime);
+}
+
 aside header {
   align-items: center;
-  border-bottom: 1px solid var(--color-dark);
+  border-bottom: 1px solid var(--ss-slate);
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
@@ -106,9 +116,11 @@ aside header {
 
 aside header h3 {
   margin: 0;
+  letter-spacing: 0.04em;
 }
 
 aside header .close {
+  color: var(--ss-light);
   font-weight: bold;
   opacity: 0.8;
   text-decoration: none;
@@ -117,6 +129,7 @@ aside header .close {
 }
 
 aside header .close:hover {
+  color: var(--ss-lime);
   opacity: 1;
 }
 
@@ -139,6 +152,27 @@ aside p:last-child {
 
 aside li {
   margin-bottom: 0.125rem;
+}
+
+aside input {
+  background: var(--ss-black);
+  border: 1px solid var(--ss-slate);
+  color: var(--ss-light);
+}
+
+aside input:focus-visible {
+  outline: 1px solid var(--ss-lime);
+  border-color: var(--ss-lime);
+}
+
+aside button:not(.close):not(.reset) {
+  background: var(--ss-lime);
+  border: 1px solid var(--ss-lime);
+  border-radius: var(--ss-radius);
+  color: var(--ss-black);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
 }
 
 .sr-only {
@@ -235,7 +269,7 @@ button.reset:hover:not(:has(> *)) {
   padding: 0 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 5;
 }
 
 .header a {
@@ -525,10 +559,6 @@ button.reset:hover:not(:has(> *)) {
     color-mix(in srgb, var(--ss-black) 85%, transparent),
     transparent
   );
-}
-
-.recommended-products h2 {
-  color: var(--ss-light);
 }
 
 .recommended-products-grid {

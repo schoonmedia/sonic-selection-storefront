@@ -56,24 +56,28 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
 - **Design-Feinschliff (Header + Navigation):** Header läuft jetzt auf dem
   Sonic-Selection-Farbschema (Jet Black, Slate-Trennlinie, Lime als aktive/
   Hover-Farbe) statt weißem Skeleton-Standard — Logo, Menü, Account-Link,
-  Favoriten-Herz, Suche und Warenkorb-Badge sind umgestellt. Cart-/Search-
-  Aside (das ausklappende weiße Seitenpanel) ist bewusst noch unangetastet,
-  folgt im nächsten Design-Schritt.
+  Favoriten-Herz, Suche und Warenkorb-Badge sind umgestellt.
 - **Design-Feinschliff (Produktkarten + Collections):** Produktkarten
   (Startseite, Collections, Favoriten), Collection-Kacheln und das
   Featured-Collection-Banner sind jetzt dunkle Cards im Corporate Design
   (Graphite-Hintergrund, Slate-Rahmen, Lime-Hover-Kante, Gold als Preis-
   Akzent) statt weißer Skeleton-Karten auf sonst weiterhin hellem Seiten-
   hintergrund — bewusst als eigenständige "Cards", nicht als komplette
-  Seiten-Umfärbung, damit noch unangetastete Bereiche (Fußzeile, Policies,
-  Warenkorb-Aside) nicht unlesbar werden.
+  Seiten-Umfärbung, damit noch unangetastete Bereiche (Fußzeile, Policies)
+  nicht unlesbar werden.
+- **Design-Feinschliff (Cart-/Search-/Mobile-Aside):** das ausklappende
+  Seitenpanel (Warenkorb, Suche, Mobile-Menü) läuft jetzt auf Graphite/
+  Slate/Lime statt Weiß — inkl. dunkler Inputs und Lime-Buttons für
+  "Apply"/"Remove"/Checkout. Dabei einen echten Bug gefunden und behoben:
+  der Header hatte denselben z-index wie das Overlay, wodurch der Header
+  beim Öffnen des Asides drübergelegen hätte statt dahinter zu verschwinden.
 
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Startseiten-Layout drumherum (Überschriften, Abstände) und Account-Seiten
-  sind noch Skeleton-Standard, nicht das volle Sonic-Selection-Design aus
-  dem Mock-up (Header und Produktkarten/Collections sind bereits
-  umgestellt, siehe oben).
+- Startseiten-Layout drumherum (Überschriften, Abstände) und Account-/
+  Präferenzen-Seiten sind noch Skeleton-Standard, nicht das volle
+  Sonic-Selection-Design aus dem Mock-up (Header, Produktkarten/Collections
+  und der Aside sind bereits umgestellt, siehe oben).
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
@@ -117,10 +121,10 @@ Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
 regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
 erledigt. Offen aus dem ursprünglichen Bauplan:
 
-1. **Design-Feinschliff:** Header sowie Produktkarten/Collections sind
-   erledigt (siehe oben). Als Nächstes: Startseiten-Layout, Account-/
-   Präferenzen-Seiten und der Cart-/Search-Aside auf die Sonic-Selection-
-   Designsprache aus dem Mock-up bringen.
+1. **Design-Feinschliff:** Header, Produktkarten/Collections und der
+   Cart-/Search-/Mobile-Aside sind erledigt (siehe oben). Als Nächstes:
+   Startseiten-Layout (Überschriften/Abstände) und Account-/Präferenzen-
+   Seiten auf die Sonic-Selection-Designsprache aus dem Mock-up bringen.
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
