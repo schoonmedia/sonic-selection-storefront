@@ -51,8 +51,8 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
 
   return (
     <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
+      <a className="ss-button-primary" href={checkoutUrl} target="_self">
+        Continue to Checkout &rarr;
       </a>
       <br />
     </div>

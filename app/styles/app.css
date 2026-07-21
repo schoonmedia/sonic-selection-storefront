@@ -14,6 +14,48 @@ img {
 
 /*
 * --------------------------------------------------
+* Sonic Selection dark theme base
+* Overrides reset.css's light-page defaults (loaded before this file, so
+* equal-specificity rules here win). Full dark mode per the official brand
+* kit (docs/brand-assets) — body is Jet Black, text is Light by default.
+* --------------------------------------------------
+*/
+body {
+  background: var(--ss-black);
+  color: var(--ss-light);
+  font-family: var(--ss-font-body);
+}
+
+a {
+  color: var(--ss-light);
+}
+
+a:hover {
+  color: var(--ss-lime);
+}
+
+hr {
+  border-top-color: var(--ss-slate);
+}
+
+input {
+  background: var(--ss-graphite);
+  border-color: var(--ss-slate);
+  color: var(--ss-light);
+}
+
+input:focus-visible {
+  border-color: var(--ss-lime);
+  outline: 1px solid var(--ss-lime);
+}
+
+code {
+  background: var(--ss-slate);
+  color: var(--ss-light);
+}
+
+/*
+* --------------------------------------------------
 * Non anchor links
 * --------------------------------------------------
 */
@@ -31,6 +73,7 @@ img {
   background: var(--color-light);
   border: 1px solid var(--color-dark);
   border-left-width: 0.5rem;
+  color: var(--color-dark);
   margin: 1rem 0;
   padding: 0;
 
@@ -68,6 +111,7 @@ img {
   }
 
   a {
+    color: var(--color-dark);
     text-decoration: underline;
     text-underline-offset: 6px;
   }
@@ -404,7 +448,8 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 .footer {
-  background: var(--color-dark);
+  background: var(--ss-black);
+  border-top: 1px solid var(--ss-slate);
   margin-top: auto;
 }
 
@@ -417,8 +462,12 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .footer-menu a {
-  color: var(--color-light);
+  color: var(--ss-light);
   min-width: fit-content;
+}
+
+.footer-menu a:hover {
+  color: var(--ss-lime);
 }
 
 /*
@@ -456,12 +505,59 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .cart-summary-aside {
-  background: white;
-  border-top: 1px solid var(--color-dark);
+  background: var(--ss-graphite);
+  border-top: 1px solid var(--ss-slate);
   bottom: 0;
   padding-top: 0.75rem;
   position: absolute;
   width: calc(var(--aside-width) - 40px);
+}
+
+.cart-line-quantity button,
+.cart-summary-page button {
+  background: transparent;
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  cursor: pointer;
+  padding: 0.25rem 0.6rem;
+}
+
+.cart-line-quantity button:hover:not(:disabled),
+.cart-summary-page button:hover:not(:disabled) {
+  border-color: var(--ss-lime);
+  color: var(--ss-lime);
+}
+
+.cart-line-quantity button:disabled,
+.cart-summary-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.ss-button-primary {
+  background: var(--ss-lime);
+  border: 1px solid var(--ss-lime);
+  border-radius: var(--ss-radius);
+  color: var(--ss-black);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: opacity 0.15s ease;
+}
+
+.ss-button-primary:hover:not(:disabled) {
+  color: var(--ss-black);
+  opacity: 0.85;
+}
+
+.ss-button-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .cart-line-quantity {
@@ -494,9 +590,19 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .predictive-search-form {
-  background: var(--color-light);
+  background: var(--ss-graphite);
   position: sticky;
   top: 0;
+}
+
+.predictive-search-form button {
+  background: var(--ss-lime);
+  border: 1px solid var(--ss-lime);
+  border-radius: var(--ss-radius);
+  color: var(--ss-black);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
 }
 
 .predictive-search-result {
@@ -700,10 +806,17 @@ button.reset:hover:not(:has(> *)) {
 
 .product-options-item,
 .product-options-item:disabled {
-  padding: 0.25rem 0.5rem;
-  background-color: transparent;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--ss-graphite);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  cursor: pointer;
   font-size: 1rem;
   font-family: inherit;
+}
+
+.product-options-item:disabled {
+  cursor: not-allowed;
 }
 
 .product-option-label-swatch {
@@ -757,6 +870,35 @@ button.reset:hover:not(:has(> *)) {
   display: inline-block;
 }
 
+/* Plain unclassed submit/action buttons across account + search pages
+   (order search, logout, /search) get a shared outlined "secondary" look
+   instead of default browser button chrome. */
+.account-logout button,
+.order-search-buttons button,
+.search button {
+  background: transparent;
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+.account-logout button:hover:not(:disabled),
+.order-search-buttons button:hover:not(:disabled),
+.search button:hover:not(:disabled) {
+  border-color: var(--ss-lime);
+  color: var(--ss-lime);
+}
+
+.account-logout button:disabled,
+.order-search-buttons button:disabled,
+.search button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
 /*
 * --------------------------------------------------
 * Order Search Form - Minimal & Responsive
@@ -767,7 +909,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .order-search-fieldset {
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--ss-slate);
   border-radius: 4px;
   padding: 1rem;
 }
@@ -799,7 +941,7 @@ button.reset:hover:not(:has(> *)) {
 .order-search-input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--ss-slate);
   border-radius: 4px;
   font-size: 1rem;
 }

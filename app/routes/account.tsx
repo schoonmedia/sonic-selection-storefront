@@ -74,10 +74,13 @@ function AccountMenu() {
     isActive: boolean;
     isPending: boolean;
   }) {
-    return {
-      fontWeight: isActive ? 'bold' : undefined,
-      color: isPending ? 'grey' : 'black',
-    };
+    if (isPending) {
+      return {color: 'var(--ss-slate)'};
+    }
+    if (isActive) {
+      return {fontWeight: 700, color: 'var(--ss-lime)'};
+    }
+    return {};
   }
 
   return (

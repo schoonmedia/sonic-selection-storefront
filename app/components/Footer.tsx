@@ -122,8 +122,11 @@ function activeLinkStyle({
   isActive: boolean;
   isPending: boolean;
 }) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'white',
-  };
+  if (isPending) {
+    return {color: 'var(--ss-slate)'};
+  }
+  if (isActive) {
+    return {fontWeight: 700, color: 'var(--ss-lime)'};
+  }
+  return {};
 }

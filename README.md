@@ -53,37 +53,42 @@ einem selbst gebauten globalen Audio-Player. Kein gekauftes Theme.
 
 Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
 
-- **Design-Feinschliff (Header + Navigation):** Header läuft jetzt auf dem
+- **Design-Feinschliff (Header + Navigation):** Header läuft auf dem
   Sonic-Selection-Farbschema (Jet Black, Slate-Trennlinie, Lime als aktive/
-  Hover-Farbe) statt weißem Skeleton-Standard — Logo, Menü, Account-Link,
-  Favoriten-Herz, Suche und Warenkorb-Badge sind umgestellt.
+  Hover-Farbe) — Logo, Menü, Account-Link, Favoriten-Herz, Suche und
+  Warenkorb-Badge.
 - **Design-Feinschliff (Produktkarten + Collections):** Produktkarten
   (Startseite, Collections, Favoriten), Collection-Kacheln und das
-  Featured-Collection-Banner sind jetzt dunkle Cards im Corporate Design
-  (Graphite-Hintergrund, Slate-Rahmen, Lime-Hover-Kante, Gold als Preis-
-  Akzent) statt weißer Skeleton-Karten auf sonst weiterhin hellem Seiten-
-  hintergrund — bewusst als eigenständige "Cards", nicht als komplette
-  Seiten-Umfärbung, damit noch unangetastete Bereiche (Fußzeile, Policies)
-  nicht unlesbar werden.
+  Featured-Collection-Banner sind dunkle Cards im Corporate Design
+  (Graphite-Hintergrund, Slate-Rahmen, Lime-Hover-Kante, Gold als
+  Preis-Akzent).
 - **Design-Feinschliff (Cart-/Search-/Mobile-Aside):** das ausklappende
-  Seitenpanel (Warenkorb, Suche, Mobile-Menü) läuft jetzt auf Graphite/
-  Slate/Lime statt Weiß — inkl. dunkler Inputs und Lime-Buttons für
-  "Apply"/"Remove"/Checkout. Dabei einen echten Bug gefunden und behoben:
-  der Header hatte denselben z-index wie das Overlay, wodurch der Header
-  beim Öffnen des Asides drübergelegen hätte statt dahinter zu verschwinden.
+  Seitenpanel (Warenkorb, Suche, Mobile-Menü) läuft auf Graphite/Slate/Lime
+  — inkl. dunkler Inputs und Lime-Buttons für "Apply"/"Remove"/Checkout.
+  Dabei einen echten Bug gefunden und behoben: der Header hatte denselben
+  z-index wie das Overlay, wodurch der Header beim Öffnen des Asides
+  drübergelegen hätte statt dahinter zu verschwinden.
 - **Echtes Logo + Favicon:** offizielles Brand-Asset-Kit erhalten
-  (`docs/brand-assets/`) — Logo-Mark läuft jetzt als `<BrandLogo>`-
-  Komponente im Header (SVG, `currentColor`, erbt die Hover-Farbe des Links)
-  statt des Platzhaltertexts "My Store". Favicon ist der offizielle Lime-
-  Mark. `--ss-font-display`/`--ss-font-body`-Tokens aus dem Kit ergänzt
-  (nur Font-Stacks, keine Font-Dateien — Lizenzhinweis im Kit beachtet).
+  (`docs/brand-assets/`) — Logo-Mark läuft als `<BrandLogo>`-Komponente im
+  Header (SVG, `currentColor`, erbt die Hover-Farbe des Links) statt des
+  Platzhaltertexts "My Store". Favicon ist der offizielle Lime-Mark.
+  `--ss-font-display`/`--ss-font-body`-Tokens aus dem Kit ergänzt (nur
+  Font-Stacks, keine Font-Dateien — Lizenzhinweis im Kit beachtet).
+- **Kompletter Dark-Mode:** die ganze Seite läuft jetzt auf Jet Black statt
+  nur einzelne Bereiche (`body` selbst ist jetzt dunkel, per offiziellem
+  Brand-Kit-Vorgabe) — Fußzeile, Warenkorb-Seite/-Zeilen, Suchergebnisse,
+  Produktoptionen/Varianten-Swatches, Account-Menü und -Formulare
+  (Bestellungen, Adressen, Profil), "Add to cart"/Checkout-Buttons (neue
+  `.ss-button-primary`-Klasse, Lime gefüllt) sind mit umgestellt. Globale
+  Basis-Overrides (`a`, `hr`, `input`, `code`) sorgen dafür, dass auch noch
+  nicht einzeln gestylte Skeleton-Reste automatisch lesbar bleiben.
 
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Startseiten-Layout drumherum (Überschriften, Abstände) und Account-/
-  Präferenzen-Seiten sind noch Skeleton-Standard, nicht das volle
-  Sonic-Selection-Design aus dem Mock-up (Header, Produktkarten/Collections
-  und der Aside sind bereits umgestellt, siehe oben).
+- Startseiten-Layout im engeren Sinn (Hero-Bereich, Kategorie-Kacheln nach
+  Wireframe) ist noch nicht gebaut — aktuell nur Featured-Collection-Banner
+  + Produkt-Grids, kein eigener Hero. Referenz: `docs/brand-assets/previews/
+  homepage-wireframe.png`.
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
@@ -127,12 +132,12 @@ Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
 regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
 erledigt. Offen aus dem ursprünglichen Bauplan:
 
-1. **Design-Feinschliff:** Header (inkl. echtem Logo), Produktkarten/
-   Collections und der Cart-/Search-/Mobile-Aside sind erledigt (siehe
-   oben). Als Nächstes: Startseiten-Layout (Hero, Kategorien, Überschriften)
-   und Account-/Präferenzen-Seiten auf die Sonic-Selection-Designsprache
-   bringen — Referenz-Material dafür liegt in `docs/brand-assets/`
-   (Icon-Set, Homepage-Wireframe, Farb-/Font-Tokens).
+1. **Design-Feinschliff:** kompletter Dark-Mode inkl. Header, Produktkarten/
+   Collections, Cart-/Search-/Mobile-Aside, Footer, Account-Seiten und
+   echtem Logo ist erledigt (siehe oben). Als Nächstes: ein echter
+   Hero-Bereich + Kategorie-Kacheln auf der Startseite nach
+   `docs/brand-assets/previews/homepage-wireframe.png` — dafür fehlen noch
+   Kategorie-Daten (Drum Kits, Melody Loops, One Shots, ...) in Shopify.
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).

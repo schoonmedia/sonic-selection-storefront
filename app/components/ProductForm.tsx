@@ -54,7 +54,7 @@ export function ProductForm({
                       to={`/products/${handle}?${variantUriQuery}`}
                       style={{
                         border: selected
-                          ? '1px solid black'
+                          ? '1px solid var(--ss-lime)'
                           : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
                       }}
@@ -77,7 +77,7 @@ export function ProductForm({
                       key={option.name + name}
                       style={{
                         border: selected
-                          ? '1px solid black'
+                          ? '1px solid var(--ss-lime)'
                           : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
                       }}
