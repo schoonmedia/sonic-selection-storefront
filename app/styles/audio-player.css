@@ -224,6 +224,12 @@ body:has(.ss-global-player) {
   border-radius: 0;
   display: block;
 }
+/* Products without a featured image have no image block pushing the title
+   down, so the absolutely-positioned favorite/play buttons would otherwise
+   sit on top of the text — reserve space for them explicitly. */
+.product-item-wrapper .product-item:not(:has(img)) {
+  padding-top: 3rem;
+}
 .product-item-wrapper .product-item h4 {
   padding: 0 0.85rem;
   font-size: 0.95rem;
