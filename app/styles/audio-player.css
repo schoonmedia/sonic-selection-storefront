@@ -204,9 +204,36 @@ body:has(.ss-global-player) {
   margin: 0;
 }
 
-/* --- Product play button --------------------------------------------------*/
+/* --- Product card ----------------------------------------------------------*/
 .product-item-wrapper {
   position: relative;
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.product-item-wrapper:hover {
+  border-color: var(--ss-lime);
+}
+.product-item-wrapper .product-item {
+  display: block;
+  color: var(--ss-light);
+}
+.product-item-wrapper .product-item img {
+  border-radius: 0;
+  display: block;
+}
+.product-item-wrapper .product-item h4 {
+  padding: 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.product-item-wrapper .product-item small {
+  display: block;
+  padding: 0 0.85rem 0.85rem;
+  color: var(--ss-gold);
+  font-size: 0.9rem;
 }
 .product-item-wrapper .ss-play-button {
   position: absolute;

@@ -59,12 +59,21 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   Favoriten-Herz, Suche und Warenkorb-Badge sind umgestellt. Cart-/Search-
   Aside (das ausklappende weiße Seitenpanel) ist bewusst noch unangetastet,
   folgt im nächsten Design-Schritt.
+- **Design-Feinschliff (Produktkarten + Collections):** Produktkarten
+  (Startseite, Collections, Favoriten), Collection-Kacheln und das
+  Featured-Collection-Banner sind jetzt dunkle Cards im Corporate Design
+  (Graphite-Hintergrund, Slate-Rahmen, Lime-Hover-Kante, Gold als Preis-
+  Akzent) statt weißer Skeleton-Karten auf sonst weiterhin hellem Seiten-
+  hintergrund — bewusst als eigenständige "Cards", nicht als komplette
+  Seiten-Umfärbung, damit noch unangetastete Bereiche (Fußzeile, Policies,
+  Warenkorb-Aside) nicht unlesbar werden.
 
 ## Was fehlt (bewusst, laut Bauplan)
 
-- Produktkarten/Collections/Startseite/Account-Seiten sind noch Skeleton-
-  Standard, nicht das volle Sonic-Selection-Design aus dem Mock-up (Header
-  ist bereits umgestellt, siehe oben).
+- Startseiten-Layout drumherum (Überschriften, Abstände) und Account-Seiten
+  sind noch Skeleton-Standard, nicht das volle Sonic-Selection-Design aus
+  dem Mock-up (Header und Produktkarten/Collections sind bereits
+  umgestellt, siehe oben).
 - Echte Waveform-Peak-Daten (`Waveform.tsx` zeigt aktuell Platzhalter-Balken).
 - Der "Test Sound Pack"-Testartikel/Test-Track in Shopify sollte gelöscht
   werden, sobald echte Produkte drin sind.
@@ -108,9 +117,10 @@ Persistenz-Feinschliff) sowie Favoriten, "Zuletzt gehört", eine
 regelbasierte Empfehlungs-Engine und Kundenkonto + Onboarding-Quiz sind
 erledigt. Offen aus dem ursprünglichen Bauplan:
 
-1. **Design-Feinschliff:** Header ist erledigt (siehe oben). Als Nächstes:
-   Produktkarten, Collections, Startseite und Account-/Präferenzen-Seiten
-   auf die Sonic-Selection-Designsprache aus dem Mock-up bringen.
+1. **Design-Feinschliff:** Header sowie Produktkarten/Collections sind
+   erledigt (siehe oben). Als Nächstes: Startseiten-Layout, Account-/
+   Präferenzen-Seiten und der Cart-/Search-Aside auf die Sonic-Selection-
+   Designsprache aus dem Mock-up bringen.
 2. **Echte Waveform-Daten:** `Waveform.tsx`s Platzhalter-Balken durch
    tatsächliche Peak-Daten ersetzen (z. B. aus einer Audio-Analyse beim
    Track-Upload).
