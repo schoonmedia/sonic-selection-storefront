@@ -475,6 +475,29 @@ body:has(.ss-global-player) {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- Drag to DAW -------------------------------------------------------- */
+/* Only rendered for tracks useDownloadAuthorization confirmed (purchased or
+   free) — see app/components/audio/DragToDaw.tsx. */
+.drag-to-daw-handle {
+  align-items: center;
+  border: 1px solid var(--ss-slate);
+  border-radius: 6px;
+  color: var(--ss-lime);
+  cursor: grab;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 0.35rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.drag-to-daw-handle:hover {
+  background: rgba(198, 255, 0, 0.08);
+  border-color: var(--ss-lime);
+}
+.drag-to-daw-handle:active {
+  cursor: grabbing;
+}
+
 /* --- Queue drawer ----------------------------------------------------------*/
 .ss-queue-drawer {
   position: fixed;

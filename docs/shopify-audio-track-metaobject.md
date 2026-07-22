@@ -19,8 +19,21 @@ Shopify Admin → Settings → Custom data → Metaobjects → Add definition.
 | `genre`              | Single line text (oder Metaobject-Referenz auf eine Genre-Taxonomie) | nein | |
 | `position`            | Integer                       | ja      | Sortierung innerhalb des Produkts. |
 | `product`             | Product reference             | ja      | Verknüpfung zum zugehörigen Sound-Pack. |
+| `download_url`        | File                          | nein    | **Vollqualitäts-Master** (WAV o.ä.) — bewusst getrennt von `preview_url`. Wird NIE über die öffentlichen Produkt-Queries abgefragt (siehe Sicherheitshinweis unten), sondern ausschließlich server-seitig in `app/routes/api.downloads.authorize.tsx`, nachdem Kauf/Free-Status geprüft wurde. Leer lassen, solange kein Master-File vorliegt — Drag-Handle blendet sich dann automatisch aus. |
 
 Definition-Handle: `audio_track` (wird unten in der GraphQL-Query referenziert).
+
+### Sicherheitshinweis zu `download_url`
+
+`AUDIO_TRACK_FIELDS_FRAGMENT` (`app/lib/fragments.ts`) — die Fragment, die
+auf Startseite, Collections, PDP und Empfehlungen läuft — fragt bewusst
+**nicht** `download_url` ab. Deren Loader-Response landet im Client-Bundle;
+jeder könnte die URL sonst einfach per "View Source" abgreifen, unabhängig
+vom Kaufstatus. `download_url` wird ausschließlich in einer eigenen,
+serverseitigen Query innerhalb der Download-Autorisierungs-Route abgefragt,
+erst nachdem geprüft wurde, dass der Besucher das Produkt gekauft hat oder
+es sich um ein Free-Pack handelt. Siehe
+`docs/ableton-drag-and-drop.md` für den vollen Ablauf.
 
 ## 2. Verknüpfung zum Produkt
 

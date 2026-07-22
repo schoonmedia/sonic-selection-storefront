@@ -65,6 +65,7 @@ export type PlayerEventName =
   | 'track_paused'
   | 'track_completed'
   | 'track_seeked'
+  | 'track_dragged_to_daw'
   | 'product_opened'
   | 'product_added_to_cart'
   | 'favorite_added'

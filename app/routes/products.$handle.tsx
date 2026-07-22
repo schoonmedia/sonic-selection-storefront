@@ -16,6 +16,8 @@ import {AUDIO_TRACKS_METAFIELD_FRAGMENT} from '~/lib/fragments';
 import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
 import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
 import {FavoriteButton} from '~/components/audio/FavoriteButton';
+import {DragToDaw} from '~/components/audio/DragToDaw';
+import {useDownloadAuthorization} from '~/hooks/useDownloadAuthorization';
 import {formatTime} from '~/components/audio/ProgressBar';
 import {RecommendedTracksSection} from '~/components/audio/RecommendedTracksSection';
 
@@ -105,6 +107,7 @@ export default function Product() {
 
   const audioProduct = toAudioProduct(product);
   const tracks = mapAudioTracks(product.audioTracks, product.id);
+  const downloadableTracks = useDownloadAuthorization(product.id);
 
   return (
     <div className="product">
@@ -148,6 +151,9 @@ export default function Product() {
                   <span className="ss-product-tracklist__duration">
                     {formatTime(track.duration)}
                   </span>
+                  {downloadableTracks[track.id] && (
+                    <DragToDaw track={downloadableTracks[track.id]} productId={product.id} />
+                  )}
                 </li>
               ))}
             </ul>
