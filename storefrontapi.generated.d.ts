@@ -559,6 +559,9 @@ export type HeroProductFragment = Pick<
   StorefrontAPI.Product,
   'id' | 'title' | 'handle'
 > & {
+  featuredImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'id' | 'url' | 'altText' | 'width' | 'height'>
+  >;
   priceRange: {
     minVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
   };
@@ -573,6 +576,12 @@ export type HomeHeroProductQuery = {
   products: {
     nodes: Array<
       Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
+        featuredImage?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'url' | 'altText' | 'width' | 'height'
+          >
+        >;
         priceRange: {
           minVariantPrice: Pick<
             StorefrontAPI.MoneyV2,
@@ -802,6 +811,46 @@ export type AudioProductsByIdsQuery = {
           })
     >
   >;
+};
+
+export type ProductCollectionsForDownloadGateQueryVariables =
+  StorefrontAPI.Exact<{
+    id: StorefrontAPI.Scalars['ID']['input'];
+    country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+    language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+  }>;
+
+export type ProductCollectionsForDownloadGateQuery = {
+  product?: StorefrontAPI.Maybe<{
+    collections: {nodes: Array<Pick<StorefrontAPI.Collection, 'handle'>>};
+  }>;
+};
+
+export type ProductDownloadUrlsQueryVariables = StorefrontAPI.Exact<{
+  id: StorefrontAPI.Scalars['ID']['input'];
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type ProductDownloadUrlsQuery = {
+  product?: StorefrontAPI.Maybe<{
+    audioTracks?: StorefrontAPI.Maybe<{
+      references?: StorefrontAPI.Maybe<{
+        nodes: Array<
+          Pick<StorefrontAPI.Metaobject, 'id'> & {
+            title?: StorefrontAPI.Maybe<
+              Pick<StorefrontAPI.MetaobjectField, 'value'>
+            >;
+            downloadUrl?: StorefrontAPI.Maybe<{
+              reference?: StorefrontAPI.Maybe<
+                Pick<StorefrontAPI.GenericFile, 'url'>
+              >;
+            }>;
+          }
+        >;
+      }>;
+    }>;
+  }>;
 };
 
 export type ArticleQueryVariables = StorefrontAPI.Exact<{
@@ -1861,7 +1910,7 @@ interface GeneratedQueryTypes {
     return: HomeNewReleasesQuery;
     variables: HomeNewReleasesQueryVariables;
   };
-  '#graphql\n  fragment HeroProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n  }\n  query HomeHeroProduct($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 1, query: "title:\'Dark Trap Vol. 5\'") {\n      nodes {\n        ...HeroProduct\n      }\n    }\n  }\n': {
+  '#graphql\n  fragment HeroProduct on Product {\n    id\n    title\n    handle\n    featuredImage {\n      id\n      url\n      altText\n      width\n      height\n    }\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n  }\n  query HomeHeroProduct($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 1, query: "title:\'Dark Trap Vol. 5\'") {\n      nodes {\n        ...HeroProduct\n      }\n    }\n  }\n': {
     return: HomeHeroProductQuery;
     variables: HomeHeroProductQueryVariables;
   };
@@ -1872,6 +1921,14 @@ interface GeneratedQueryTypes {
   '#graphql\n  query AudioProductsByIds(\n    $ids: [ID!]!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    nodes(ids: $ids) {\n      __typename\n      ... on Product {\n        id\n        handle\n        title\n        featuredImage {\n          id\n          altText\n          url\n          width\n          height\n        }\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n          maxVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        ...AudioTracksMetafield\n      }\n    }\n  }\n  #graphql\n  #graphql\n  fragment AudioTrackFields on Metaobject {\n    id\n    title: field(key: "title") {\n      value\n    }\n    previewUrl: field(key: "preview_url") {\n      reference {\n        ... on GenericFile {\n          url\n        }\n        ... on MediaImage {\n          image {\n            url\n          }\n        }\n      }\n    }\n    durationSeconds: field(key: "duration_seconds") {\n      value\n    }\n    bpm: field(key: "bpm") {\n      value\n    }\n    key: field(key: "key") {\n      value\n    }\n    genre: field(key: "genre") {\n      value\n    }\n    position: field(key: "position") {\n      value\n    }\n  }\n\n  fragment AudioTracksMetafield on Product {\n    audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n      references(first: 20) {\n        nodes {\n          ...AudioTrackFields\n        }\n      }\n    }\n  }\n\n': {
     return: AudioProductsByIdsQuery;
     variables: AudioProductsByIdsQueryVariables;
+  };
+  '#graphql\n  query ProductCollectionsForDownloadGate($id: ID!, $country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    product(id: $id) {\n      collections(first: 10) {\n        nodes {\n          handle\n        }\n      }\n    }\n  }\n': {
+    return: ProductCollectionsForDownloadGateQuery;
+    variables: ProductCollectionsForDownloadGateQueryVariables;
+  };
+  '#graphql\n  query ProductDownloadUrls($id: ID!, $country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    product(id: $id) {\n      audioTracks: metafield(namespace: "custom", key: "audio_tracks") {\n        references(first: 20) {\n          nodes {\n            ... on Metaobject {\n              id\n              title: field(key: "title") {\n                value\n              }\n              downloadUrl: field(key: "download_url") {\n                reference {\n                  ... on GenericFile {\n                    url\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n': {
+    return: ProductDownloadUrlsQuery;
+    variables: ProductDownloadUrlsQueryVariables;
   };
   '#graphql\n  query Article(\n    $articleHandle: String!\n    $blogHandle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    blog(handle: $blogHandle) {\n      handle\n      articleByHandle(handle: $articleHandle) {\n        handle\n        title\n        contentHtml\n        publishedAt\n        author: authorV2 {\n          name\n        }\n        image {\n          id\n          altText\n          url\n          width\n          height\n        }\n        seo {\n          description\n          title\n        }\n      }\n    }\n  }\n': {
     return: ArticleQuery;

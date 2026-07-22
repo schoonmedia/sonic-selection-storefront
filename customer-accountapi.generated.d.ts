@@ -503,6 +503,38 @@ export type CustomerOrdersQuery = {
   };
 };
 
+export type CustomerPlaylistsSetMutationVariables = CustomerAccountAPI.Exact<{
+  customerId: CustomerAccountAPI.Scalars['ID']['input'];
+  value: CustomerAccountAPI.Scalars['String']['input'];
+  language?: CustomerAccountAPI.InputMaybe<CustomerAccountAPI.LanguageCode>;
+}>;
+
+export type CustomerPlaylistsSetMutation = {
+  metafieldsSet?: CustomerAccountAPI.Maybe<{
+    metafields?: CustomerAccountAPI.Maybe<
+      Array<Pick<CustomerAccountAPI.Metafield, 'id' | 'value'>>
+    >;
+    userErrors: Array<
+      Pick<
+        CustomerAccountAPI.MetafieldsSetUserError,
+        'field' | 'message' | 'code'
+      >
+    >;
+  }>;
+};
+
+export type CustomerPlaylistsQueryVariables = CustomerAccountAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type CustomerPlaylistsQuery = {
+  customer: {
+    playlists?: CustomerAccountAPI.Maybe<
+      Pick<CustomerAccountAPI.Metafield, 'value'>
+    >;
+  };
+};
+
 export type CustomerPreferencesSetMutationVariables = CustomerAccountAPI.Exact<{
   customerId: CustomerAccountAPI.Scalars['ID']['input'];
   value: CustomerAccountAPI.Scalars['String']['input'];
@@ -521,6 +553,25 @@ export type CustomerPreferencesSetMutation = {
       >
     >;
   }>;
+};
+
+export type CustomerProductOrdersQueryVariables = CustomerAccountAPI.Exact<{
+  first: CustomerAccountAPI.Scalars['Int']['input'];
+  language?: CustomerAccountAPI.InputMaybe<CustomerAccountAPI.LanguageCode>;
+}>;
+
+export type CustomerProductOrdersQuery = {
+  customer: {
+    orders: {
+      nodes: Array<
+        Pick<CustomerAccountAPI.Order, 'id'> & {
+          lineItems: {
+            nodes: Array<Pick<CustomerAccountAPI.LineItem, 'productId'>>;
+          };
+        }
+      >;
+    };
+  };
 };
 
 export type CustomerUpdateMutationVariables = CustomerAccountAPI.Exact<{
@@ -570,6 +621,14 @@ interface GeneratedQueryTypes {
     return: CustomerOrdersQuery;
     variables: CustomerOrdersQueryVariables;
   };
+  '#graphql\n  query CustomerPlaylists {\n    customer {\n      playlists: metafield(namespace: "custom", key: "playlists") {\n        value\n      }\n    }\n  }\n': {
+    return: CustomerPlaylistsQuery;
+    variables: CustomerPlaylistsQueryVariables;
+  };
+  '#graphql\n  query CustomerProductOrders($first: Int!, $language: LanguageCode)\n    @inContext(language: $language) {\n    customer {\n      orders(first: $first, sortKey: PROCESSED_AT, reverse: true) {\n        nodes {\n          id\n          lineItems(first: 50) {\n            nodes {\n              productId\n            }\n          }\n        }\n      }\n    }\n  }\n': {
+    return: CustomerProductOrdersQuery;
+    variables: CustomerProductOrdersQueryVariables;
+  };
 }
 
 interface GeneratedMutationTypes {
@@ -584,6 +643,10 @@ interface GeneratedMutationTypes {
   '#graphql\n  mutation customerAddressCreate(\n    $address: CustomerAddressInput!\n    $defaultAddress: Boolean\n    $language: LanguageCode\n  ) @inContext(language: $language) {\n    customerAddressCreate(\n      address: $address\n      defaultAddress: $defaultAddress\n    ) {\n      customerAddress {\n        id\n      }\n      userErrors {\n        code\n        field\n        message\n      }\n    }\n  }\n': {
     return: CustomerAddressCreateMutation;
     variables: CustomerAddressCreateMutationVariables;
+  };
+  '#graphql\n  mutation customerPlaylistsSet(\n    $customerId: ID!\n    $value: String!\n    $language: LanguageCode\n  ) @inContext(language: $language) {\n    metafieldsSet(\n      metafields: [\n        {\n          ownerId: $customerId\n          namespace: "custom"\n          key: "playlists"\n          type: "json"\n          value: $value\n        }\n      ]\n    ) {\n      metafields {\n        id\n        value\n      }\n      userErrors {\n        field\n        message\n        code\n      }\n    }\n  }\n': {
+    return: CustomerPlaylistsSetMutation;
+    variables: CustomerPlaylistsSetMutationVariables;
   };
   '#graphql\n  mutation customerPreferencesSet(\n    $customerId: ID!\n    $value: String!\n    $language: LanguageCode\n  ) @inContext(language: $language) {\n    metafieldsSet(\n      metafields: [\n        {\n          ownerId: $customerId\n          namespace: "custom"\n          key: "music_preferences"\n          type: "json"\n          value: $value\n        }\n      ]\n    ) {\n      metafields {\n        id\n        value\n      }\n      userErrors {\n        field\n        message\n        code\n      }\n    }\n  }\n': {
     return: CustomerPreferencesSetMutation;
