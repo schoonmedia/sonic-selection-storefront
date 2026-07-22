@@ -64,6 +64,7 @@ export type PlayerEventName =
   | 'track_started'
   | 'track_paused'
   | 'track_completed'
+  | 'track_seeked'
   | 'product_opened'
   | 'product_added_to_cart'
   | 'favorite_added'
@@ -75,5 +76,15 @@ export interface PlayerEvent {
   productId?: string;
   /** Playback position in seconds at time of event, where relevant. */
   position?: number;
+  /** Cumulative wall-clock time this track was actually audible during the
+   *  current listen (ms). Distinct from `position` (last known playhead) —
+   *  seeking around doesn't reset it. Present on track_paused/track_completed. */
+  listenedMs?: number;
+  /** listenedMs expressed as a fraction of the track's known duration
+   *  (0..1). Omitted if duration is unknown. */
+  percentComplete?: number;
   timestamp: number;
+  /** Stable anonymous id, persisted in localStorage across sessions — lets
+   *  a future analytics backend group events without requiring login. */
+  sessionId: string;
 }
