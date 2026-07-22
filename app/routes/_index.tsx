@@ -17,6 +17,10 @@ import {Hero} from '~/components/home/Hero';
 import {FeatureIconsRow} from '~/components/home/FeatureIconsRow';
 import {CategoryGrid} from '~/components/home/CategoryGrid';
 import {NewReleasesSection} from '~/components/home/NewReleasesSection';
+import {ArtistPacksTeaser} from '~/components/home/ArtistPacksTeaser';
+import {ProducersTeaser} from '~/components/home/ProducersTeaser';
+import {ProjectsTeaser} from '~/components/home/ProjectsTeaser';
+import {StoriesTeaser} from '~/components/home/StoriesTeaser';
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -123,6 +127,10 @@ export default function Homepage() {
       <FeatureIconsRow />
       <CategoryGrid categories={data.categories} />
       <NewReleasesSection products={data.newReleases} />
+      <ArtistPacksTeaser />
+      <ProducersTeaser />
+      <ProjectsTeaser />
+      <StoriesTeaser />
       <ForYou genres={data.preferredGenres} />
       <RecentlyPlayedSection />
       <RecommendedProducts products={data.recommendedProducts} />

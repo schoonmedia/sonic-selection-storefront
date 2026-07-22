@@ -603,6 +603,61 @@
   font-size: 0.85rem;
 }
 
+/* --- FPC flagship banner (homepage Projects teaser) ----------------------- */
+.fpc-flagship-banner {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+  @media (min-width: 45em) {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+.fpc-flagship-banner:hover {
+  border-color: var(--ss-lime);
+  color: var(--ss-light);
+}
+
+.fpc-flagship-banner-image {
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  @media (min-width: 45em) {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+}
+
+.fpc-flagship-banner-content {
+  align-self: center;
+  padding: 1.5rem;
+  @media (min-width: 45em) {
+    padding: 1.5rem 1.5rem 1.5rem 0;
+  }
+}
+
+.fpc-flagship-banner-title {
+  font-family: var(--ss-font-display);
+  font-size: 1.6rem;
+  margin: 0.35rem 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.fpc-flagship-banner-description {
+  color: var(--ss-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  max-width: 48ch;
+}
+
 /* --- Related content rail ------------------------------------------------- */
 .related-content-rail-title {
   font-family: var(--ss-font-display);

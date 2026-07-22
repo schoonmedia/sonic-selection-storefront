@@ -10,7 +10,7 @@ import {
 import {FPCProjectHero} from '~/components/platform/FPCProjectHero';
 import {GlobalProjectHero} from '~/components/platform/GlobalProjectHero';
 import {ProducerGrid} from '~/components/platform/ProducerGrid';
-import {ArtistPackCard} from '~/components/platform/ArtistPackCard';
+import {ArtistPackGrid} from '~/components/platform/ArtistPackGrid';
 import {RelatedContentRail, type RelatedContentItem} from '~/components/platform/RelatedContentRail';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -80,11 +80,7 @@ export default function ProjectDetail() {
       {relatedProducts.length > 0 && (
         <section className="platform-section">
           <h2 className="platform-section-title">Sound Packs</h2>
-          <div className="artist-pack-grid">
-            {relatedProducts.map((product) => (
-              <ArtistPackCard key={product.id} product={product} />
-            ))}
-          </div>
+          <ArtistPackGrid products={relatedProducts} />
         </section>
       )}
 

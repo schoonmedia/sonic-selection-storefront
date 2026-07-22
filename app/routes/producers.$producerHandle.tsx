@@ -6,7 +6,7 @@ import {
   getStoriesByProducer,
 } from '~/lib/platform/mockData';
 import {ProducerProfileHero} from '~/components/platform/ProducerProfileHero';
-import {ArtistPackCard} from '~/components/platform/ArtistPackCard';
+import {ArtistPackGrid} from '~/components/platform/ArtistPackGrid';
 import {RelatedContentRail, type RelatedContentItem} from '~/components/platform/RelatedContentRail';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -45,11 +45,7 @@ export default function ProducerProfile() {
       {products.length > 0 && (
         <section className="platform-section">
           <h2 className="platform-section-title">Sound Packs</h2>
-          <div className="artist-pack-grid">
-            {products.map((product) => (
-              <ArtistPackCard key={product.id} product={product} />
-            ))}
-          </div>
+          <ArtistPackGrid products={products} />
         </section>
       )}
 
