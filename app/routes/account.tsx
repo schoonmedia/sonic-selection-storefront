@@ -93,12 +93,8 @@ function AccountMenu() {
         &nbsp; Profile &nbsp;
       </NavLink>
       &nbsp;|&nbsp;
-      <NavLink to="/playlists" style={isActiveStyle}>
-        &nbsp; Playlists &nbsp;
-      </NavLink>
-      &nbsp;|&nbsp;
-      <NavLink to="/favorites" style={isActiveStyle}>
-        &nbsp; Favoriten &nbsp;
+      <NavLink to="/library" style={isActiveStyle}>
+        &nbsp; Mediathek &nbsp;
       </NavLink>
       &nbsp;|&nbsp;
       <NavLink to="/account/addresses" style={isActiveStyle}>

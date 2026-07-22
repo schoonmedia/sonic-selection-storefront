@@ -693,3 +693,109 @@ body:has(.ss-global-player) {
 .ss-queue-drawer__row[data-active='true'] {
   color: var(--ss-lime);
 }
+
+/* --- Library (aggregated Playlists + Favoriten + Zuletzt gehört) --------- */
+.library {
+  padding: 2rem 1.5rem;
+}
+.library__intro {
+  color: var(--ss-muted);
+  margin-top: -0.5rem;
+}
+.library__section {
+  margin-top: 2.5rem;
+}
+.library__section-header {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.library__section-header h2 {
+  margin: 0;
+}
+.library__section-link {
+  color: var(--ss-lime);
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.library__section-link:hover {
+  text-decoration: underline;
+}
+.library__section-empty {
+  color: var(--ss-muted);
+  margin-top: 0.75rem;
+  max-width: 32em;
+}
+.library__history-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+.library__history-item {
+  align-items: center;
+  background: color-mix(in srgb, var(--ss-graphite) 60%, transparent);
+  border: 1px solid var(--ss-slate);
+  border-radius: 8px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.75rem;
+  min-width: 220px;
+  padding: 0.75rem;
+}
+.library__history-item .ss-play-button {
+  flex-shrink: 0;
+  height: 36px;
+  width: 36px;
+}
+.library__history-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.library__history-title {
+  color: var(--ss-light);
+  font-weight: 600;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.library__history-title:hover {
+  color: var(--ss-lime);
+}
+.library__history-track {
+  color: var(--ss-gold);
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.library__playlists-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  max-width: 480px;
+  padding: 0;
+}
+.library__playlists-list li {
+  border-bottom: 1px solid var(--ss-slate);
+}
+.library__playlists-list a {
+  align-items: center;
+  color: var(--ss-light);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 0;
+  text-decoration: none;
+}
+.library__playlists-list a:hover {
+  color: var(--ss-lime);
+}
+.library__playlists-count {
+  color: var(--ss-muted);
+  font-size: 0.8rem;
+}
