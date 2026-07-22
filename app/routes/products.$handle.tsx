@@ -17,6 +17,7 @@ import {mapAudioTracks, toAudioProduct} from '~/lib/audioTracks';
 import {ProductPlayButton} from '~/components/audio/ProductPlayButton';
 import {FavoriteButton} from '~/components/audio/FavoriteButton';
 import {DragToDaw} from '~/components/audio/DragToDaw';
+import {AddToPlaylistButton} from '~/components/audio/AddToPlaylistButton';
 import {useDownloadAuthorization} from '~/hooks/useDownloadAuthorization';
 import {formatTime} from '~/components/audio/ProgressBar';
 import {RecommendedTracksSection} from '~/components/audio/RecommendedTracksSection';
@@ -154,6 +155,11 @@ export default function Product() {
                   {downloadableTracks[track.id] && (
                     <DragToDaw track={downloadableTracks[track.id]} productId={product.id} />
                   )}
+                  <AddToPlaylistButton
+                    trackId={track.id}
+                    productId={product.id}
+                    trackTitle={track.title}
+                  />
                 </li>
               ))}
             </ul>

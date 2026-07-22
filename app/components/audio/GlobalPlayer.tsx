@@ -4,6 +4,7 @@ import {useAudioEngine} from '~/hooks/useAudioEngine';
 import {usePlayerPersistence} from '~/hooks/usePlayerPersistence';
 import {useFavoritesPersistence} from '~/hooks/useFavoritesPersistence';
 import {useHistoryPersistence} from '~/hooks/useHistoryPersistence';
+import {usePlaylistPersistence} from '~/hooks/usePlaylistPersistence';
 import {useMediaSession} from '~/hooks/useMediaSession';
 import {MiniPlayer} from '~/components/audio/MiniPlayer';
 import {MobilePlayer} from '~/components/audio/MobilePlayer';
@@ -18,6 +19,8 @@ import {QueueDrawer} from '~/components/audio/QueueDrawer';
  * Composition:
  * - useAudioEngine  -> owns the one <audio> element + its event listeners
  * - usePlayerPersistence -> localStorage read/write
+ * - usePlaylistPersistence -> localStorage + customer-metafield sync (see
+ *   docs/playlists-and-profile.md)
  * - useMediaSession -> lock-screen / hardware media keys
  * - MiniPlayer / MobilePlayer -> bottom bar, breakpoint-switched
  * - ExpandedPlayer  -> full-screen now-playing, toggled locally
@@ -32,6 +35,7 @@ export function GlobalPlayer() {
   usePlayerPersistence();
   useFavoritesPersistence();
   useHistoryPersistence();
+  usePlaylistPersistence();
   useMediaSession(seek);
 
   useEffect(() => {
