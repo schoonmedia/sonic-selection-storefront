@@ -17,9 +17,9 @@ aufs Desktop ziehen" (siehe `dt.in.th/DownloadURL`, `web.dev/case-studies/
 box-dnd-download`).
 
 Safari und Firefox unterstützen diesen MIME-Typ nicht und ignorieren ihn
-folgenlos — dort greift kein Spezial-Drag, ein normaler Download-Link
-sollte deshalb parallel verfügbar bleiben (nicht Teil dieser ersten
-Ausbaustufe).
+folgenlos — dort greift kein Spezial-Drag. Deshalb steht direkt daneben
+immer auch ein normaler Download-Link (`<a href download>` auf dieselbe
+autorisierte `downloadUrl`), der in jedem Browser funktioniert.
 
 ## Sicherheitsmodell
 
@@ -52,18 +52,15 @@ existieren. Deshalb:
 - `app/routes/api.downloads.authorize.tsx` — Autorisierungs-Route.
 - `app/hooks/useDownloadAuthorization.ts` — Client-Hook, fragt beim Laden
   der Produktseite ab, welche Tracks dieser Besucher downloaden darf.
-- `app/components/audio/DragToDaw.tsx` — der eigentliche Drag-Handle.
-- `app/routes/products.$handle.tsx` — Tracklist rendert pro Zeile einen
-  Drag-Handle, wenn die Autorisierung ihn für diesen Track freigibt.
+- `app/components/audio/DragToDaw.tsx` — Drag-Handle + Fallback-Download-
+  Link, beide nebeneinander in einer `.drag-to-daw-group`.
+- `app/routes/products.$handle.tsx` — Tracklist rendert pro Zeile beide,
+  wenn die Autorisierung sie für diesen Track freigibt.
 
 ## Offene Punkte / nächste Ausbaustufe
 
 - `download_url`-Feld muss im Shopify Admin am `audio_track`-Metaobject
   ergänzt und mit echten Master-Files befüllt werden (sobald Tims Packs
   da sind — siehe `docs/sound-pack-ingestion-workflow.md`).
-- Fallback-Download-Button für Safari/Firefox.
 - Multi-Select-Drag ("mehrere Samples auf einmal ziehen", wie bei Splice)
   — aktuell ein Handle pro Track.
-- Später: Kaufprüfung auf Kunden-ID statt nur Session, sobald Playlists/
-  Profil (siehe Plattform-Roadmap) eine Kunden-übergreifende Bibliothek
-  brauchen.

@@ -5,21 +5,12 @@ Neueste Priorisierung zuerst.
 
 ## Aktuell priorisiert
 
-### 1. Fallback-Download-Button (höchste Priorität, Philipp)
-Der Ableton-Drag&Drop (`docs/ableton-drag-and-drop.md`) nutzt den
-Chrome/Chromium-only `DownloadURL`-Trick. Safari- und Firefox-Nutzer haben
-aktuell **keine** Möglichkeit, eine gekaufte oder freie Datei herunterzuladen
-— der Drag-Handle ist für sie ein No-op. Braucht einen normalen
-`<a download>`/Button neben dem Drag-Handle, der dieselbe
-`/api/downloads/authorize`-Route nutzt (Berechtigung ist serverseitig
-bereits vorhanden, fehlt nur die UI für den Nicht-Chrome-Fall).
-
-### 2. Mediathek-Schnellzugriff im Header
+### 1. Mediathek-Schnellzugriff im Header
 `/library` (Mediathek) ist aktuell nur über das Account-Menü erreichbar.
 Ein Icon im Header (neben dem Favoriten-Herz) würde die Auffindbarkeit
 erhöhen, siehe `components/Header.tsx` → `FavoritesLink()` als Vorlage.
 
-### 3. Playlist-Reordering
+### 2. Playlist-Reordering
 Playlists erlauben aktuell nur Hinzufügen/Entfernen von Tracks
 (`stores/playlistStore.ts`), keine Neusortierung per Drag. Position wird
 aktuell implizit durch Array-Reihenfolge bestimmt.
@@ -40,3 +31,4 @@ aktuell implizit durch Array-Reihenfolge bestimmt.
 - Playlists (local-first + Customer-Metafield-Sync)
 - Mediathek (`/library`): aggregierte Übersicht aus Playlists, Favoriten,
   Zuletzt gehört
+- Fallback-Download-Button für Safari/Firefox (`DragToDaw.tsx`)
