@@ -33,7 +33,7 @@ export const projects: Project[] = [
     description:
       'Female* Producer Collective is one of Sonic Selection’s official flagship projects. It supports visibility, education, mentoring, workshops and community for female* producers.',
     heroImage:
-      'https://images.unsplash.com/photo-1601814923576-019b567be073?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1601814923576-019b567be073.jpg?v=1784710471',
     logoImage: '/assets/logos/fpc-logo.svg',
     relatedProducerIds: ['nova-kane', 'lyra-voss'],
     relatedStoryIds: ['inside-fpc', 'producer-visibility-matters'],
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     description:
       'Artist Collaborations (the Sonic Selection Artist Series) features producers across genres with curated sound packs, stories and global player previews.',
     heroImage:
-      'https://images.unsplash.com/photo-1618609377864-68609b857e90?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1618609377864-68609b857e90.jpg?v=1784710653',
     relatedProducerIds: [
       'kai-noir',
       'mika-sol',
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     description:
       'Sonic Sessions documents producers at work — studio recaps, session breakdowns and the stories behind how a pack came together.',
     heroImage:
-      'https://images.unsplash.com/photo-1627773755683-dfcf2774596a?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1627773755683-dfcf2774596a.jpg?v=1784710720',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
     relatedStoryIds: ['first-sonic-session-recap'],
     relatedProductIds: [],
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     description:
       'Community Drops highlights packs and collaborations shaped directly by the Sonic Selection producer community.',
     heroImage:
-      'https://images.unsplash.com/photo-1634650254521-b1596c5a2d37?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1634650254521-b1596c5a2d37.jpg?v=1784710746',
     relatedProducerIds: [],
     relatedStoryIds: [],
     relatedProductIds: [],
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     description:
       'Workshops and meetings are the first education layer before deeper tutorial formats are added later.',
     heroImage:
-      'https://images.unsplash.com/photo-1560831340-b9679dc9e9f0?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1560831340-b9679dc9e9f0.jpg?v=1784710793',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
     relatedStoryIds: ['first-sonic-session-recap'],
     relatedProductIds: [],
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     description:
       'Education / Resources bundles guides, references and recommended reading for producers — a foundation for the deeper tutorial format planned for a later phase.',
     heroImage:
-      'https://images.unsplash.com/photo-1596633313465-1256feb1c6d9?auto=format&fit=crop&w=1600&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1596633313465-1256feb1c6d9.jpg?v=1784710852',
     relatedProducerIds: [],
     relatedStoryIds: [],
     relatedProductIds: [],
@@ -430,7 +430,7 @@ export const stories: Story[] = [
     excerpt:
       'How one of Sonic Selection’s flagship projects supports visibility, education and community.',
     coverImage:
-      'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1611532736579-6b16e2b50449.jpg?v=1784710883',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane'],
@@ -450,7 +450,7 @@ export const stories: Story[] = [
     excerpt:
       'Producer culture is bigger than credits. Visibility shapes careers, collaborations and access.',
     coverImage:
-      'https://images.unsplash.com/photo-1601814837661-ce2832acd413?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1601814837661-ce2832acd413.jpg?v=1784710933',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
@@ -470,7 +470,7 @@ export const stories: Story[] = [
     excerpt:
       'A look into the sonic identity behind Nova Kane’s first Sonic Selection artist pack.',
     coverImage:
-      'https://images.unsplash.com/photo-1598847873329-ed1608fb858b?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1598847873329-ed1608fb858b.jpg?v=1784710954',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane'],
@@ -490,7 +490,7 @@ export const stories: Story[] = [
     excerpt:
       'Kai Noir on building Vol. 1 around urban drums and cold, cinematic melodies.',
     coverImage:
-      'https://images.unsplash.com/photo-1613031729579-ace1feefda4c?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1613031729579-ace1feefda4c.jpg?v=1784710979',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['kai-noir'],
@@ -510,7 +510,7 @@ export const stories: Story[] = [
     excerpt:
       'Inside the glossy, atmospheric layering behind Mika Sol’s house-leaning sound.',
     coverImage:
-      'https://images.unsplash.com/photo-1642177437932-75d846ad48f3?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1642177437932-75d846ad48f3.jpg?v=1784711009',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['mika-sol'],
@@ -530,7 +530,7 @@ export const stories: Story[] = [
     excerpt:
       'Notes, quotes and takeaways from the first Sonic Sessions studio meetup.',
     coverImage:
-      'https://images.unsplash.com/photo-1559732277-7453b141e3a1?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1559732277-7453b141e3a1.jpg?v=1784711031',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
@@ -546,7 +546,7 @@ export const stories: Story[] = [
     excerpt:
       'A first look at the free sounds bundled into the Sonic Selection starter kit.',
     coverImage:
-      'https://images.unsplash.com/photo-1619078515712-c8e13a3f2d37?auto=format&fit=crop&w=1200&q=75',
+      'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1619078515712-c8e13a3f2d37.jpg?v=1784711291',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: [],
