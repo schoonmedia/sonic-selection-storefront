@@ -23,7 +23,12 @@ export async function loader({request, context}: Route.LoaderArgs) {
       idsParam
         .split(',')
         .map((id) => id.trim())
-        .filter(Boolean),
+        // Only real Shopify GIDs — Storefront API's `nodes(ids:)` fails the
+        // *entire* query (not just the offending id) if any id isn't
+        // well-formed, so a single bad id (stale/corrupt localStorage,
+        // a synthetic non-product id, etc.) would otherwise take down
+        // every legitimate id in the same request.
+        .filter((id) => id.startsWith('gid://shopify/Product/')),
     ),
   ).slice(0, 25); // sane upper bound, this is a small rehydration lookup
 
