@@ -21,7 +21,17 @@ const FPC_MISSION_PILLARS = [
 export function FPCProjectHero({project}: {project: Project}) {
   return (
     <section className="platform-hero fpc-hero">
-      <PlatformCoverImage src={project.heroImage} alt={project.title} className="platform-hero-image" />
+      <div className="fpc-hero-image-wrap">
+        <PlatformCoverImage src={project.heroImage} alt={project.title} className="platform-hero-image" />
+        {project.logoImage && (
+          <img
+            src={project.logoImage}
+            alt={`${project.title} logo`}
+            loading="lazy"
+            className="fpc-hero-logo"
+          />
+        )}
+      </div>
       <div className="platform-hero-content">
         <span className="fpc-hero-lockup">Sonic Selection × {project.title}</span>
         <h1 className="platform-hero-title">{project.title}</h1>

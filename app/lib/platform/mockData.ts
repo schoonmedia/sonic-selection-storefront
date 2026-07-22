@@ -34,7 +34,7 @@ export const projects: Project[] = [
       'Female* Producer Collective is one of Sonic Selection’s official flagship projects. It supports visibility, education, mentoring, workshops and community for female* producers.',
     heroImage:
       'https://cdn.shopify.com/s/files/1/1032/2893/2439/files/photo-1601814923576-019b567be073.jpg?v=1784710471',
-    logoImage: '/assets/logos/fpc-logo.svg',
+    logoImage: '/assets/logos/fpc-logo.png',
     relatedProducerIds: ['nova-kane', 'lyra-voss'],
     relatedStoryIds: ['inside-fpc', 'producer-visibility-matters'],
     relatedProductIds: ['nova-kane-vol-1', 'lyra-voss-vol-1'],

@@ -25,11 +25,21 @@ export function ProjectsTeaser() {
 
       {fpc && (
         <Link to={`/projects/${fpc.handle}`} className="fpc-flagship-banner" prefetch="intent">
-          <PlatformCoverImage
-            src={fpc.heroImage}
-            alt={fpc.title}
-            className="fpc-flagship-banner-image"
-          />
+          <div className="fpc-flagship-banner-image-wrap">
+            <PlatformCoverImage
+              src={fpc.heroImage}
+              alt={fpc.title}
+              className="fpc-flagship-banner-image"
+            />
+            {fpc.logoImage && (
+              <img
+                src={fpc.logoImage}
+                alt={`${fpc.title} logo`}
+                loading="lazy"
+                className="fpc-flagship-banner-logo"
+              />
+            )}
+          </div>
           <div className="fpc-flagship-banner-content">
             <span className="platform-eyebrow">Flagship Project</span>
             <h3 className="fpc-flagship-banner-title">{fpc.title}</h3>

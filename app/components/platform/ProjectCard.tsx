@@ -17,11 +17,22 @@ const PROJECT_TYPE_LABEL: Record<Project['type'], string> = {
 export function ProjectCard({project}: {project: Project}) {
   return (
     <Link to={`/projects/${project.handle}`} className="project-card" prefetch="intent">
-      <PlatformCoverImage
-        src={project.heroImage}
-        alt={project.title}
-        className="project-card-image"
-      />
+      <div className="project-card-image-wrap">
+        <PlatformCoverImage
+          src={project.heroImage}
+          alt={project.title}
+          className="project-card-image"
+        />
+        {project.logoImage && (
+          <img
+            src={project.logoImage}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="project-card-logo"
+          />
+        )}
+      </div>
       <div className="project-card-body">
         <span className="platform-eyebrow">{PROJECT_TYPE_LABEL[project.type]}</span>
         <h3 className="project-card-title">{project.title}</h3>
