@@ -9,12 +9,14 @@ import type {
 /**
  * Phase 1 mock content for the platform layer (Producers, Projects,
  * Stories, Artist Packs). Sourced from the "Sonic Selection Platform & FPC
- * Architecture" briefing package. Image/audio paths below are placeholders
- * (`/assets/...`, `/audio/...`) that intentionally do not resolve to real
- * files yet — real photography, cover art and audio previews are a separate,
- * later task (see docs/platform/README.md). Every component that renders
- * these fields (PlatformCoverImage, PlatformPlayButton) degrades gracefully
- * when the file 404s, so this is safe to ship as-is.
+ * Architecture" briefing package. Producer portraits/hero images and product
+ * covers are real local files under `/assets/...` (see docs/platform/README.md).
+ * Project hero images and Story cover images are example/demo photography
+ * hotlinked from Unsplash (free license, no attribution required) — a
+ * placeholder-quality illustration of every category per the July 2026
+ * briefing, to be swapped for real Sonic Selection photography later.
+ * `audio/...` paths remain unresolved placeholders; PlatformPlayButton
+ * degrades gracefully when a track file 404s.
  *
  * Six projects mirror the full route map from the briefing's
  * routes-and-navigation.md so every `/projects/:handle` link resolves.
@@ -30,7 +32,8 @@ export const projects: Project[] = [
       'An official Sonic Selection flagship project supporting visibility, education and community for female* producers.',
     description:
       'Female* Producer Collective is one of Sonic Selection’s official flagship projects. It supports visibility, education, mentoring, workshops and community for female* producers.',
-    heroImage: '/assets/projects/fpc-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1601814923576-019b567be073?auto=format&fit=crop&w=1600&q=75',
     logoImage: '/assets/logos/fpc-logo.svg',
     relatedProducerIds: ['nova-kane', 'lyra-voss'],
     relatedStoryIds: ['inside-fpc', 'producer-visibility-matters'],
@@ -50,7 +53,8 @@ export const projects: Project[] = [
       'Cinematic artist pack drops from selected producers and sound designers — also known as the Sonic Selection Artist Series.',
     description:
       'Artist Collaborations (the Sonic Selection Artist Series) features producers across genres with curated sound packs, stories and global player previews.',
-    heroImage: '/assets/projects/artist-series-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1618609377864-68609b857e90?auto=format&fit=crop&w=1600&q=75',
     relatedProducerIds: [
       'kai-noir',
       'mika-sol',
@@ -97,7 +101,8 @@ export const projects: Project[] = [
     shortDescription: 'Live and recorded studio sessions from Sonic Selection producers.',
     description:
       'Sonic Sessions documents producers at work — studio recaps, session breakdowns and the stories behind how a pack came together.',
-    heroImage: '/assets/projects/sonic-sessions-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1627773755683-dfcf2774596a?auto=format&fit=crop&w=1600&q=75',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
     relatedStoryIds: ['first-sonic-session-recap'],
     relatedProductIds: [],
@@ -111,7 +116,8 @@ export const projects: Project[] = [
     shortDescription: 'Community-driven pack drops and collaborative releases.',
     description:
       'Community Drops highlights packs and collaborations shaped directly by the Sonic Selection producer community.',
-    heroImage: '/assets/projects/community-drops-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1634650254521-b1596c5a2d37?auto=format&fit=crop&w=1600&q=75',
     relatedProducerIds: [],
     relatedStoryIds: [],
     relatedProductIds: [],
@@ -126,7 +132,8 @@ export const projects: Project[] = [
       'Meetings, workshops and community formats for producer culture.',
     description:
       'Workshops and meetings are the first education layer before deeper tutorial formats are added later.',
-    heroImage: '/assets/projects/workshops-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1560831340-b9679dc9e9f0?auto=format&fit=crop&w=1600&q=75',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
     relatedStoryIds: ['first-sonic-session-recap'],
     relatedProductIds: [],
@@ -140,7 +147,8 @@ export const projects: Project[] = [
     shortDescription: 'Guides and resources supporting producers at every stage.',
     description:
       'Education / Resources bundles guides, references and recommended reading for producers — a foundation for the deeper tutorial format planned for a later phase.',
-    heroImage: '/assets/projects/education-resources-hero.jpg',
+    heroImage:
+      'https://images.unsplash.com/photo-1596633313465-1256feb1c6d9?auto=format&fit=crop&w=1600&q=75',
     relatedProducerIds: [],
     relatedStoryIds: [],
     relatedProductIds: [],
@@ -421,7 +429,8 @@ export const stories: Story[] = [
     category: 'projects',
     excerpt:
       'How one of Sonic Selection’s flagship projects supports visibility, education and community.',
-    coverImage: '/assets/stories/inside-fpc.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane'],
@@ -440,7 +449,8 @@ export const stories: Story[] = [
     category: 'industry_culture',
     excerpt:
       'Producer culture is bigger than credits. Visibility shapes careers, collaborations and access.',
-    coverImage: '/assets/stories/producer-visibility.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1601814837661-ce2832acd413?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
@@ -459,7 +469,8 @@ export const stories: Story[] = [
     category: 'behind_the_pack',
     excerpt:
       'A look into the sonic identity behind Nova Kane’s first Sonic Selection artist pack.',
-    coverImage: '/assets/stories/behind-nova-kane.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1598847873329-ed1608fb858b?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane'],
@@ -478,7 +489,8 @@ export const stories: Story[] = [
     category: 'producer_stories',
     excerpt:
       'Kai Noir on building Vol. 1 around urban drums and cold, cinematic melodies.',
-    coverImage: '/assets/stories/kai-noir-story.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1613031729579-ace1feefda4c?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['kai-noir'],
@@ -497,7 +509,8 @@ export const stories: Story[] = [
     category: 'sound_design',
     excerpt:
       'Inside the glossy, atmospheric layering behind Mika Sol’s house-leaning sound.',
-    coverImage: '/assets/stories/mika-sol-story.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1642177437932-75d846ad48f3?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['mika-sol'],
@@ -516,7 +529,8 @@ export const stories: Story[] = [
     category: 'projects',
     excerpt:
       'Notes, quotes and takeaways from the first Sonic Sessions studio meetup.',
-    coverImage: '/assets/stories/sonic-session-recap.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1559732277-7453b141e3a1?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: ['nova-kane', 'kai-noir'],
@@ -531,7 +545,8 @@ export const stories: Story[] = [
     category: 'free_downloads',
     excerpt:
       'A first look at the free sounds bundled into the Sonic Selection starter kit.',
-    coverImage: '/assets/stories/free-starter-kit.jpg',
+    coverImage:
+      'https://images.unsplash.com/photo-1619078515712-c8e13a3f2d37?auto=format&fit=crop&w=1200&q=75',
     publishedAt: '2026-07-22',
     authorName: 'Sonic Selection',
     relatedProducerIds: [],
