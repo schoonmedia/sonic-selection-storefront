@@ -658,6 +658,43 @@
   max-width: 48ch;
 }
 
+/* --- Free Starter Kit + Community CTA bands (homepage closers) ------------ */
+.free-starter-kit-band,
+.community-cta-band {
+  background: linear-gradient(160deg, var(--ss-graphite), var(--ss-black) 70%);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.free-starter-kit-content,
+.community-cta-content {
+  margin: 0 auto;
+  max-width: 46ch;
+}
+
+.free-starter-kit-title,
+.community-cta-title {
+  font-family: var(--ss-font-display);
+  font-size: 1.6rem;
+  margin: 0.5rem 0 1.5rem;
+  text-transform: uppercase;
+  @media (min-width: 45em) {
+    font-size: 2rem;
+  }
+}
+
+.community-cta-description {
+  color: var(--ss-muted);
+  margin-bottom: 0.5rem;
+}
+
+.community-cta-row {
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
 /* --- Related content rail ------------------------------------------------- */
 .related-content-rail-title {
   font-family: var(--ss-font-display);

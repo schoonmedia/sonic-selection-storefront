@@ -21,6 +21,8 @@ import {ArtistPacksTeaser} from '~/components/home/ArtistPacksTeaser';
 import {ProducersTeaser} from '~/components/home/ProducersTeaser';
 import {ProjectsTeaser} from '~/components/home/ProjectsTeaser';
 import {StoriesTeaser} from '~/components/home/StoriesTeaser';
+import {FreeStarterKitTeaser} from '~/components/home/FreeStarterKitTeaser';
+import {CommunityCta} from '~/components/home/CommunityCta';
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -131,6 +133,8 @@ export default function Homepage() {
       <ProducersTeaser />
       <ProjectsTeaser />
       <StoriesTeaser />
+      <FreeStarterKitTeaser />
+      <CommunityCta />
       <ForYou genres={data.preferredGenres} />
       <RecentlyPlayedSection />
       <RecommendedProducts products={data.recommendedProducts} />
