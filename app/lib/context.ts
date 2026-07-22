@@ -21,6 +21,14 @@ declare global {
   // Augment HydrogenCustomCartFragment with the codegen'd cart fragment type so
   // that context.cart.get() and all cart mutations return the extended cart type.
   interface HydrogenCustomCartFragment extends CartApiQueryFragment {}
+
+  // Optional player-analytics sink config (see api.analytics.event.tsx and
+  // README "Analytics-Backend (PostHog) einrichten"). Both undefined until
+  // set locally in .env / in the Shopify storefront's environment settings.
+  interface Env {
+    POSTHOG_API_KEY?: string;
+    POSTHOG_HOST?: string;
+  }
 }
 
 /**

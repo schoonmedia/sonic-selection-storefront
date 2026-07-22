@@ -99,6 +99,15 @@ Typecheck, Lint und Build wurden vor jeder Übergabe verifiziert (0 Errors).
   `<NewReleasesSection>` ("New Releases", neueste 6 Produkte mit "New"-Badge,
   Play-Button und Fallback-Markendesign statt kaputter Bilder, solange keine
   Cover-Art hochgeladen ist). Neue Komponenten unter `app/components/home/`.
+- **Player-Analytics-Pipeline:** echte Hördauer pro Track (wall-clock,
+  übersteht Pause/Resume/Seek/Skip — nicht nur die letzte Playhead-Position),
+  Play/Pause/Seek/Complete-Events inkl. Produkt-ID und anonymer Session-ID
+  (`app/hooks/useAudioEngine.ts`, `app/services/audioAnalytics.ts`). Events
+  werden client-seitig gepuffert (übersteht Tab-Schließen) und alle 15s
+  gebündelt an `/api/analytics/event` gesendet. Sink ist **PostHog**
+  (`app/routes/api.analytics.event.tsx`) — läuft auf Server-Log zurück,
+  solange `POSTHOG_API_KEY` nicht gesetzt ist. Siehe „Analytics-Backend
+  einrichten" unten.
 
 ## Was fehlt (bewusst, laut Bauplan)
 
@@ -130,6 +139,29 @@ npx shopify hydrogen env pull
 
 Das öffnet einen Browser-Login-Flow (keine Passwörter im Terminal/Chat
 nötig) und schreibt die echten Store-Variablen in `.env`.
+
+### Analytics-Backend (PostHog) einrichten
+
+Die Player-Analytics-Pipeline steht (siehe oben), aber ohne PostHog-Key
+landen die Events nur im Server-Log statt in einem echten Dashboard:
+
+1. Kostenlosen Account auf [posthog.com](https://posthog.com) anlegen
+   (EU-Cloud-Projekt wählen, falls Datenresidenz in der EU wichtig ist).
+2. Neues Projekt → Project Settings → "Project API Key" kopieren.
+3. Lokal in `.env` ergänzen:
+   ```
+   POSTHOG_API_KEY=phc_...
+   POSTHOG_HOST=https://eu.i.posthog.com
+   ```
+   (`POSTHOG_HOST` ist optional, Default ist bereits die EU-Region.)
+4. Für Produktion dieselben zwei Variablen zusätzlich in Shopify Admin →
+   Hydrogen-Storefront → Settings → Environments als Environment Variables
+   eintragen (analog zu den Storefront-API-Variablen).
+
+Sobald der Key gesetzt ist, tauchen `track_started`, `track_paused`,
+`track_completed`, `track_seeked` etc. mit Track-/Produkt-ID, Hördauer und
+Session-ID in PostHog auf — daraus lassen sich Insights bauen (meistgehörte
+Tracks, durchschnittliche Hördauer, Skip-Muster, ...).
 
 ### Auf GitHub pushen + Oxygen-Deploy aktivieren
 
