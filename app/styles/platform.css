@@ -1,0 +1,651 @@
+/*
+* --------------------------------------------------
+* Sonic Selection platform layer
+* Producers, Projects, Stories, Artist Packs — see
+* app/lib/platform/README.md and docs/platform/README.md for the
+* architecture this styles. Reuses the --ss-* design tokens declared in
+* audio-player.css's :root (no new tokens introduced here).
+* --------------------------------------------------
+*/
+
+.platform-page {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem 4rem;
+}
+
+.platform-section {
+  margin: 3rem 0;
+}
+
+.platform-section-title {
+  font-family: var(--ss-font-display);
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.platform-eyebrow {
+  color: var(--ss-lime);
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.platform-empty-state {
+  color: var(--ss-muted);
+  font-size: 0.9rem;
+}
+
+/* --- Cover image fallback (shared by every card/hero) -------------------- */
+.platform-cover-fallback {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(160deg, var(--ss-black), var(--ss-slate) 65%, var(--ss-black));
+  border-radius: var(--ss-radius);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.platform-cover-fallback-mark {
+  color: var(--ss-lime);
+  font-family: var(--ss-font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+/* --- Generic hero (Projects index, Global project, Producer, Story) ------ */
+.platform-hero {
+  border-bottom: 1px solid var(--ss-slate);
+  display: grid;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  @media (min-width: 45em) {
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.platform-hero--compact {
+  grid-template-columns: 1fr;
+}
+
+.platform-hero-image {
+  border-radius: var(--ss-radius);
+  width: 100%;
+}
+
+.platform-hero-title {
+  font-family: var(--ss-font-display);
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin: 0.5rem 0 1rem;
+  text-transform: uppercase;
+  @media (min-width: 45em) {
+    font-size: 2.8rem;
+  }
+}
+
+.platform-hero-description {
+  color: var(--ss-muted);
+  font-size: 1rem;
+  max-width: 44ch;
+}
+
+.platform-hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.platform-hero-cta {
+  background: var(--ss-lime);
+  border-radius: var(--ss-radius);
+  color: var(--ss-black);
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.15s ease;
+}
+
+.platform-hero-cta:hover {
+  color: var(--ss-black);
+  opacity: 0.85;
+}
+
+.platform-hero-cta--outline {
+  background: transparent;
+  border: 1px solid var(--ss-slate);
+  color: var(--ss-light);
+  margin-top: 0;
+}
+
+.platform-hero-cta--outline:hover {
+  border-color: var(--ss-lime);
+  color: var(--ss-lime);
+  opacity: 1;
+}
+
+/* --- FPC project hero ------------------------------------------------------ */
+.fpc-hero-lockup {
+  color: var(--ss-gold);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fpc-mission-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.fpc-mission-pillar {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.75rem;
+  text-transform: uppercase;
+}
+
+/* --- Play button (producer/project/story/artist-pack cards) -------------- */
+.platform-play-button {
+  align-items: center;
+  background: var(--ss-lime);
+  border: none;
+  border-radius: 50%;
+  color: var(--ss-black);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.platform-play-button:hover {
+  transform: scale(1.08);
+}
+
+.platform-play-button--sm {
+  height: 2rem;
+  width: 2rem;
+}
+
+.platform-play-button--md {
+  height: 2.75rem;
+  width: 2.75rem;
+}
+
+/* --- Affiliation badges --------------------------------------------------- */
+.affiliation-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.affiliation-badge {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: 999px;
+  color: var(--ss-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.affiliation-badge--primary {
+  border-color: var(--ss-lime);
+  color: var(--ss-lime);
+}
+
+/* --- Producers ------------------------------------------------------------- */
+.producer-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 64em) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.producer-card {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.producer-card:hover {
+  border-color: var(--ss-lime);
+}
+
+.producer-card-media {
+  display: block;
+}
+
+.producer-card-portrait {
+  aspect-ratio: 1 / 1;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.producer-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+
+.producer-card-name {
+  font-family: var(--ss-font-display);
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.producer-card-location {
+  color: var(--ss-muted);
+  font-size: 0.8rem;
+}
+
+.producer-card-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.25rem 0;
+}
+
+.genre-tag {
+  background: var(--ss-slate);
+  border-radius: 999px;
+  color: var(--ss-light);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.producer-card-featured-pack {
+  color: var(--ss-gold);
+  font-size: 0.8rem;
+}
+
+.producer-card .platform-play-button {
+  bottom: 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+}
+
+.producer-profile-hero-name {
+  font-family: var(--ss-font-display);
+  font-size: 2.4rem;
+  margin: 0.5rem 0;
+  text-transform: uppercase;
+  @media (min-width: 45em) {
+    font-size: 3rem;
+  }
+}
+
+.producer-profile-hero-location {
+  color: var(--ss-muted);
+  display: block;
+  font-size: 0.9rem;
+}
+
+.producer-profile-hero-bio {
+  color: var(--ss-light);
+  margin: 1rem 0;
+  max-width: 52ch;
+}
+
+/* --- Projects --------------------------------------------------------------- */
+.project-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 64em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-card {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--ss-lime);
+  color: var(--ss-light);
+  transform: translateY(-2px);
+}
+
+.project-card-image {
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.project-card-body {
+  padding: 1.25rem;
+}
+
+.project-card-title {
+  font-family: var(--ss-font-display);
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.project-card-description {
+  color: var(--ss-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* --- Stories ----------------------------------------------------------------- */
+.platform-category-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.platform-category-card {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  color: var(--ss-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.platform-category-card:hover {
+  border-color: var(--ss-lime);
+  color: var(--ss-light);
+}
+
+.platform-category-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.platform-category-card-description {
+  color: var(--ss-muted);
+  font-size: 0.8rem;
+}
+
+.platform-category-card-count {
+  color: var(--ss-lime);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.story-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 64em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.story-card {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.story-card:hover {
+  border-color: var(--ss-lime);
+}
+
+.story-card-media {
+  display: block;
+  position: relative;
+}
+
+.story-card-image {
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.story-card-category {
+  background: var(--ss-black);
+  border-radius: 999px;
+  bottom: 0.75rem;
+  color: var(--ss-lime);
+  font-size: 0.7rem;
+  font-weight: 700;
+  left: 0.75rem;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.story-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.1rem;
+}
+
+.story-card-title {
+  color: var(--ss-light);
+  font-family: var(--ss-font-display);
+  font-size: 1.05rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.story-card-excerpt {
+  color: var(--ss-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.story-card-meta {
+  color: var(--ss-muted);
+  font-size: 0.75rem;
+}
+
+.story-card .platform-play-button {
+  bottom: 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+}
+
+.story-hero-category {
+  position: static;
+}
+
+.story-hero-meta {
+  color: var(--ss-muted);
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.story-content {
+  color: var(--ss-light);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+
+.story-content-placeholder {
+  color: var(--ss-muted);
+}
+
+/* --- Artist Packs -------------------------------------------------------- */
+.artist-pack-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 64em) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.artist-pack-card {
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.artist-pack-card:hover {
+  border-color: var(--ss-lime);
+}
+
+.artist-pack-card-media {
+  position: relative;
+}
+
+.artist-pack-card-media-link {
+  display: block;
+}
+
+.artist-pack-card-image {
+  aspect-ratio: 3 / 4;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.artist-pack-card .platform-play-button {
+  bottom: 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+}
+
+.artist-pack-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem;
+}
+
+.artist-pack-card-title {
+  color: var(--ss-light);
+  font-family: var(--ss-font-display);
+  font-size: 0.95rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.artist-pack-card-label {
+  color: var(--ss-gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.artist-pack-card-price {
+  color: var(--ss-muted);
+  font-size: 0.85rem;
+}
+
+/* --- Related content rail ------------------------------------------------- */
+.related-content-rail-title {
+  font-family: var(--ss-font-display);
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.related-content-rail-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.related-content-rail-item {
+  color: var(--ss-light);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  text-decoration: none;
+  width: 180px;
+}
+
+.related-content-rail-image {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--ss-radius);
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.related-content-rail-item-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.related-content-rail-item-subtitle {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--ss-muted);
+  display: -webkit-box;
+  font-size: 0.75rem;
+  overflow: hidden;
+}

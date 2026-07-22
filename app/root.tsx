@@ -16,6 +16,7 @@ import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import audioPlayerStyles from '~/styles/audio-player.css?url';
+import platformStyles from '~/styles/platform.css?url';
 import {PageLayout} from './components/PageLayout';
 import {GlobalPlayer} from './components/audio/GlobalPlayer';
 
@@ -154,6 +155,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
         <link rel="stylesheet" href={audioPlayerStyles}></link>
+        <link rel="stylesheet" href={platformStyles}></link>
         <Meta />
         <Links />
       </head>
