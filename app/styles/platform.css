@@ -603,6 +603,52 @@
   font-size: 0.85rem;
 }
 
+/* --- Artist Pack hero (/artist-packs) --------------------------------------- */
+.artist-pack-hero-image {
+  aspect-ratio: 3 / 4;
+  @media (min-width: 45em) {
+    aspect-ratio: auto;
+  }
+}
+
+.artist-pack-hero-featured {
+  align-items: center;
+  background: var(--ss-graphite);
+  border: 1px solid var(--ss-slate);
+  border-radius: var(--ss-radius);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  max-width: 360px;
+}
+
+.artist-pack-hero-featured-title {
+  font-family: var(--ss-font-display);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* --- Producer social links --------------------------------------------------- */
+.producer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.producer-social-link {
+  color: var(--ss-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.producer-social-link:hover {
+  color: var(--ss-lime);
+}
+
 /* --- FPC flagship banner (homepage Projects teaser) ----------------------- */
 .fpc-flagship-banner {
   background: var(--ss-graphite);

@@ -2,6 +2,7 @@ import {useLoaderData} from 'react-router';
 import type {Route} from './+types/artist-packs._index';
 import {products, getProducersByIds, getStoriesByProject} from '~/lib/platform/mockData';
 import {ArtistPackGrid} from '~/components/platform/ArtistPackGrid';
+import {ArtistPackHero} from '~/components/platform/ArtistPackHero';
 import {ProducerGrid} from '~/components/platform/ProducerGrid';
 import {RelatedContentRail, type RelatedContentItem} from '~/components/platform/RelatedContentRail';
 
@@ -36,14 +37,7 @@ export default function ArtistPacksIndex() {
 
   return (
     <div className="platform-page">
-      <section className="platform-hero platform-hero--compact">
-        <div className="platform-hero-content">
-          <h1 className="platform-hero-title">Artist Packs</h1>
-          <p className="platform-hero-description">
-            Cinematic artist packs from selected producers and sound designers.
-          </p>
-        </div>
-      </section>
+      <ArtistPackHero featuredProduct={artistPacks[0]} />
 
       <ArtistPackGrid products={artistPacks} />
 

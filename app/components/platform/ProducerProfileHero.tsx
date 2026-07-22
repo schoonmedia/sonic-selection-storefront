@@ -3,6 +3,7 @@ import {getAudioTrackById} from '~/lib/platform/mockData';
 import {PlatformCoverImage} from './PlatformCoverImage';
 import {PlatformPlayButton} from './PlatformPlayButton';
 import {AffiliationBadgeList} from './AffiliationBadge';
+import {ProducerSocialLinks} from './ProducerSocialLinks';
 
 export function ProducerProfileHero({producer}: {producer: Producer}) {
   const previewTrack = producer.audioTrackIds
@@ -32,6 +33,7 @@ export function ProducerProfileHero({producer}: {producer: Producer}) {
           </div>
         )}
         <p className="producer-profile-hero-bio">{producer.bio}</p>
+        <ProducerSocialLinks links={producer.socialLinks} />
         <PlatformPlayButton track={previewTrack} contextTitle={producer.name} size="md" />
       </div>
     </section>

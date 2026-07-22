@@ -144,6 +144,11 @@ export const producers: Producer[] = [
     featuredProductIds: ['nova-kane-vol-1'],
     storyIds: ['inside-fpc', 'behind-nova-kane-vol-1'],
     audioTrackIds: ['nova-kane-preview'],
+    socialLinks: {
+      instagram: 'https://instagram.com/novakane',
+      spotify: 'https://open.spotify.com/artist/novakane',
+      soundcloud: 'https://soundcloud.com/novakane',
+    },
   },
   {
     id: 'kai-noir',
@@ -169,6 +174,11 @@ export const producers: Producer[] = [
     featuredProductIds: ['kai-noir-vol-1'],
     storyIds: ['kai-noir-artist-pack-story'],
     audioTrackIds: ['kai-noir-preview'],
+    socialLinks: {
+      instagram: 'https://instagram.com/kainoir',
+      soundcloud: 'https://soundcloud.com/kainoir',
+      youtube: 'https://youtube.com/@kainoir',
+    },
   },
   {
     id: 'mika-sol',
@@ -193,6 +203,11 @@ export const producers: Producer[] = [
     featuredProductIds: ['mika-sol-vol-1'],
     storyIds: ['mika-sol-sound-design'],
     audioTrackIds: ['mika-sol-preview'],
+    socialLinks: {
+      instagram: 'https://instagram.com/mikasol',
+      spotify: 'https://open.spotify.com/artist/mikasol',
+      website: 'https://mikasol.example',
+    },
   },
 ];
 
@@ -211,6 +226,10 @@ export const stories: Story[] = [
     relatedProjectIds: ['female-producer-collective'],
     relatedProductIds: [],
     audioTrackIds: [],
+    content:
+      'Female* Producer Collective started as a simple question inside Sonic Selection: who gets to be visible in producer culture, and why? The answer became a program — visibility, education, mentoring, workshops and network, built directly into the platform rather than bolted on as a separate initiative.\n\n' +
+      'FPC producers are Sonic Selection producers first. Their packs sit in the same catalog, their profiles use the same system, their stories run in the same feed as everyone else\'s. What FPC adds is a dedicated space for community and mentorship — regular sessions, shared resources and a growing network of producers who show up for each other.\n\n' +
+      'Nova Kane was one of the first to join. "It\'s not about being separated out," she says. "It\'s about having people in your corner who get exactly what you\'re building, and a platform that puts that in front of the right ears."',
   },
   {
     id: 'producer-visibility-matters',
@@ -226,6 +245,10 @@ export const stories: Story[] = [
     relatedProjectIds: ['female-producer-collective'],
     relatedProductIds: [],
     audioTrackIds: [],
+    content:
+      'Credits are a starting point, not the finish line. A producer can ship a placement and still stay invisible — buried in liner notes, absent from the story anyone tells about how a record actually got made.\n\n' +
+      'Visibility changes what happens next: who gets the follow-up call, who gets invited into the room, who a label thinks of first when a brief comes in. Sonic Selection treats producer profiles, stories and artist packs as one connected system for exactly this reason — a pack is also a byline, and a byline is also a body of work you can point to.\n\n' +
+      '"The most useful thing anyone did for my career was just tell people my name attached to my sound," Kai Noir notes. "Everything after that got easier."',
   },
   {
     id: 'behind-nova-kane-vol-1',
@@ -241,6 +264,10 @@ export const stories: Story[] = [
     relatedProjectIds: ['artist-collaborations'],
     relatedProductIds: ['nova-kane-vol-1'],
     audioTrackIds: ['nova-kane-preview'],
+    content:
+      'Vol. 1 started with a single drum loop Nova Kane built at 142 BPM and never intended to release — a rough sketch that ended up defining the whole pack\'s identity: dark, cinematic, built for club systems but mixed with headphones in mind.\n\n' +
+      '"I wanted it to sound like a room you walk into at 2am," she says. "Everything after that loop was just chasing that feeling — the 808s, the pads, the little vinyl-crackle textures underneath." The pack took six weeks from that first loop to the final tracklist, most of it spent cutting material that was good but didn\'t belong.\n\n' +
+      'Vol. 1 is also Nova Kane\'s first release as part of both the Sonic Selection Artist Series and Female* Producer Collective — two affiliations that show up on her profile, side by side, exactly as they should.',
   },
   {
     id: 'kai-noir-artist-pack-story',
@@ -256,6 +283,10 @@ export const stories: Story[] = [
     relatedProjectIds: ['artist-collaborations'],
     relatedProductIds: ['kai-noir-vol-1'],
     audioTrackIds: ['kai-noir-preview'],
+    content:
+      'Kai Noir builds from the drums out. "If the drums don\'t move on their own, nothing I put on top is going to save it," he says of his process for Vol. 1 — a pack built around heavy, urban-leaning 808 patterns and cold, minor-key melodies that sit somewhere between trap and drill.\n\n' +
+      'Every one-shot in the pack was recorded and re-processed at least three times before it made the cut, run through the same signal chain Kai Noir uses on his own placements. "I don\'t release anything I wouldn\'t drop into a session I\'m getting paid for. That\'s the whole standard."\n\n' +
+      'Vol. 1 is part of the Sonic Selection Artist Series — the platform-wide artist-collaboration line open to producers across genres, independent of any other project affiliation.',
   },
   {
     id: 'mika-sol-sound-design',
@@ -271,6 +302,10 @@ export const stories: Story[] = [
     relatedProjectIds: ['artist-collaborations'],
     relatedProductIds: ['mika-sol-vol-1'],
     audioTrackIds: ['mika-sol-preview'],
+    content:
+      'Mika Sol\'s sound starts with layering, not synthesis. "I\'ll take three or four sources — a pad, a field recording, a resampled chord — and blend them until you can\'t point to where one ends and the next begins," she explains. That approach shapes the glossy, atmospheric character running through Vol. 1.\n\n' +
+      'House and electronic production usually lean on precision; Mika Sol\'s pack leans into texture instead — slightly detuned layers, soft saturation, reverb tails left a little longer than a mix engineer might recommend. "Perfectly clean can also mean perfectly boring. I want it to feel like it\'s breathing."\n\n' +
+      'Vol. 1 sits inside Artist Collaborations, the platform-wide artist-pack line — no project affiliation required beyond being a producer worth featuring.',
   },
   {
     id: 'first-sonic-session-recap',

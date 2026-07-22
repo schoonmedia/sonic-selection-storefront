@@ -48,7 +48,9 @@ export default function StoryDetail() {
 
       <article className="platform-section story-content">
         {story.content ? (
-          <p>{story.content}</p>
+          story.content
+            .split('\n\n')
+            .map((paragraph, index) => <p key={index}>{paragraph}</p>)
         ) : (
           <p className="story-content-placeholder">{story.excerpt}</p>
         )}
