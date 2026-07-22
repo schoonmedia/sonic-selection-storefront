@@ -1,29 +1,32 @@
 import {Link} from 'react-router';
 import type {HomeCategoryFragment} from 'storefrontapi.generated';
 import iconSound from '~/assets/icons/icon-sound.svg';
-import iconElevate from '~/assets/icons/icon-elevate.svg';
+import iconMelody from '~/assets/icons/icon-melody.svg';
 import iconOneShots from '~/assets/icons/icon-one-shots.svg';
 import iconPresets from '~/assets/icons/icon-presets.svg';
 import iconMidi from '~/assets/icons/icon-midi.svg';
-import iconHeadphones from '~/assets/icons/icon-headphones.svg';
-import iconFocus from '~/assets/icons/icon-focus.svg';
+import iconMic from '~/assets/icons/icon-mic.svg';
+import iconFx from '~/assets/icons/icon-fx.svg';
 import iconTools from '~/assets/icons/icon-tools.svg';
-import iconQueue from '~/assets/icons/icon-queue.svg';
+import iconBundle from '~/assets/icons/icon-bundle.svg';
 import iconDownload from '~/assets/icons/icon-download.svg';
 
 // Keyed by the Shopify-generated collection handle (title, lowercased +
 // hyphenated). If a new collection is added later with a handle that isn't
 // in this map, it falls back to the generic sound icon rather than breaking.
+// Each icon is purpose-drawn for its category (piano-roll grid for MIDI,
+// microphone for vocals, lightning bolt for FX, stacked boxes for bundles,
+// beamed notes for melody/loops) rather than reused from an unrelated icon.
 const ICON_BY_HANDLE: Record<string, string> = {
   'drum-kits': iconSound,
-  'melody-loops': iconElevate,
+  'melody-loops': iconMelody,
   'one-shots': iconOneShots,
   presets: iconPresets,
   'midi-packs': iconMidi,
-  'vocal-samples': iconHeadphones,
-  'sound-fx': iconFocus,
+  'vocal-samples': iconMic,
+  'sound-fx': iconFx,
   tools: iconTools,
-  bundles: iconQueue,
+  bundles: iconBundle,
   free: iconDownload,
 };
 

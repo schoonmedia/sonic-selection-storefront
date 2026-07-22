@@ -137,15 +137,30 @@
   opacity: 1;
 }
 
-/* --- FPC project hero ------------------------------------------------------ */
+/* --- FPC project hero ------------------------------------------------------
+ * Image-first, cinematic banner rather than a side-by-side 50/50 grid — a
+ * tall portrait photo next to a short text column left a large dead black
+ * area beside the text. The image now leads at a fixed wide aspect ratio,
+ * with the content flowing full-width underneath instead of squeezed into
+ * a column. */
+.fpc-hero {
+  display: block;
+  gap: 0;
+  padding: 0 0 2.5rem;
+}
+
 .fpc-hero-image-wrap {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--ss-radius);
   overflow: hidden;
   position: relative;
+  @media (min-width: 45em) {
+    aspect-ratio: 21 / 8;
+  }
 }
 
 .fpc-hero-image-wrap::after {
   background: linear-gradient(180deg, rgba(11, 11, 13, 0) 40%, rgba(11, 11, 13, 0.78) 100%);
-  border-radius: var(--ss-radius);
   content: '';
   inset: 0;
   pointer-events: none;
@@ -153,11 +168,18 @@
   z-index: 0;
 }
 
+.fpc-hero .platform-hero-image {
+  border-radius: var(--ss-radius);
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 .fpc-hero-logo {
   bottom: 1.5rem;
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
   left: 1.5rem;
-  max-height: 45%;
+  max-height: 55%;
   max-width: 80%;
   object-fit: contain;
   position: absolute;
@@ -165,8 +187,17 @@
   z-index: 1;
   @media (min-width: 45em) {
     left: 2rem;
-    max-width: 70%;
+    max-width: 46%;
   }
+}
+
+.fpc-hero .platform-hero-content {
+  max-width: none;
+  padding: 2rem 0 0;
+}
+
+.fpc-hero .platform-hero-description {
+  max-width: 60ch;
 }
 
 .fpc-hero-lockup {
@@ -450,17 +481,44 @@
   border: 1px solid var(--ss-slate);
   border-radius: var(--ss-radius);
   color: var(--ss-light);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.25rem;
+  display: block;
+  overflow: hidden;
   text-decoration: none;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
 .platform-category-card:hover {
   border-color: var(--ss-lime);
   color: var(--ss-light);
+  transform: translateY(-2px);
+}
+
+.platform-category-card-image-wrap {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+.platform-category-card-image-wrap::after {
+  background: linear-gradient(180deg, rgba(11, 11, 13, 0) 50%, rgba(11, 11, 13, 0.85) 100%);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.platform-category-card-image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.platform-category-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
 }
 
 .platform-category-card-title {
@@ -647,6 +705,17 @@
   text-transform: uppercase;
 }
 
+.artist-pack-card-producer {
+  color: var(--ss-muted);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.artist-pack-card-producer:hover {
+  color: var(--ss-lime);
+}
+
 .artist-pack-card-label {
   color: var(--ss-gold);
   font-size: 0.7rem;
@@ -790,20 +859,46 @@
   max-width: 48ch;
 }
 
-/* --- Free Starter Kit + Community CTA bands (homepage closers) ------------ */
+/* --- Free Starter Kit + Community CTA bands (homepage closers) ------------
+ * Real photography as a full-bleed background with a dark scrim, rather
+ * than a flat gradient placeholder — the image sits behind the content via
+ * absolute positioning, so markup order doesn't affect the visual stack. */
 .free-starter-kit-band,
 .community-cta-band {
   background: linear-gradient(160deg, var(--ss-graphite), var(--ss-black) 70%);
   border: 1px solid var(--ss-slate);
   border-radius: var(--ss-radius);
+  overflow: hidden;
   padding: 3rem 2rem;
+  position: relative;
   text-align: center;
+}
+
+.free-starter-kit-band::after,
+.community-cta-band::after {
+  background: linear-gradient(160deg, rgba(11, 11, 13, 0.6), rgba(11, 11, 13, 0.9) 70%);
+  content: '';
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.free-starter-kit-image,
+.community-cta-image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
 }
 
 .free-starter-kit-content,
 .community-cta-content {
   margin: 0 auto;
   max-width: 46ch;
+  position: relative;
+  z-index: 2;
 }
 
 .free-starter-kit-title,

@@ -1,5 +1,5 @@
 import {Link} from 'react-router';
-import {Money} from '@shopify/hydrogen';
+import {Image, Money} from '@shopify/hydrogen';
 import type {HeroProductFragment} from 'storefrontapi.generated';
 
 /**
@@ -7,8 +7,8 @@ import type {HeroProductFragment} from 'storefrontapi.generated';
  * two-column layout with headline/CTAs on the left and a product visual +
  * "listen & buy" widget on the right. The right side only renders once a
  * matching hero product exists in the catalog (see HOME_HERO_PRODUCT_QUERY
- * in routes/_index.tsx) — until real cover art is uploaded, the visual box
- * falls back to the brand mark instead of a broken image.
+ * in routes/_index.tsx). Renders the product's real featuredImage when one
+ * exists; falls back to the brand mark instead of a broken image otherwise.
  */
 export function Hero({heroProduct}: {heroProduct: HeroProductFragment | null}) {
   return (
@@ -35,9 +35,18 @@ export function Hero({heroProduct}: {heroProduct: HeroProductFragment | null}) {
 
       {heroProduct && (
         <div className="hero-visual">
-          <div className="hero-visual-box" aria-hidden="true">
-            <span className="hero-visual-mark">S</span>
-          </div>
+          {heroProduct.featuredImage ? (
+            <Image
+              className="hero-visual-image"
+              alt={heroProduct.featuredImage.altText || heroProduct.title}
+              data={heroProduct.featuredImage}
+              sizes="(min-width: 45em) 420px, 80vw"
+            />
+          ) : (
+            <div className="hero-visual-box" aria-hidden="true">
+              <span className="hero-visual-mark">S</span>
+            </div>
+          )}
           <div className="hero-track-info">
             <p className="hero-track-eyebrow">New Release</p>
             <h3 className="hero-track-title">{heroProduct.title}</h3>

@@ -242,6 +242,13 @@ const HOME_HERO_PRODUCT_QUERY = `#graphql
     id
     title
     handle
+    featuredImage {
+      id
+      url
+      altText
+      width
+      height
+    }
     priceRange {
       minVariantPrice {
         amount

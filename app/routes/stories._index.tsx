@@ -44,6 +44,7 @@ export default function StoriesIndex() {
               description={category.description}
               href={`/stories?category=${category.value}`}
               count={stories.filter((story) => story.category === category.value).length}
+              image={category.image}
             />
           ))}
         </div>

@@ -840,6 +840,10 @@ export function getProducerByHandle(handle: string) {
   return producers.find((producer) => producer.handle === handle);
 }
 
+export function getProducerById(id: string) {
+  return producers.find((producer) => producer.id === id);
+}
+
 export function getStoryBySlug(slug: string) {
   return stories.find((story) => story.slug === slug);
 }
